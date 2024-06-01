@@ -1,0 +1,271 @@
+* {
+  font-family: "DM Sans";
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --dark-gray: #707070;
+  --accent: #a18a68;
+  --black: #222;
+  --gray: #d8d8d8;
+  --white: #ffffff;
+  --light-gray: #efefef;
+}
+
+.back,
+td.action svg {
+  text-decoration: none;
+  color: var(--black);
+}
+
+.brand-name {
+  font-family: "Great Vibes";
+  color: var(--black);
+}
+
+.button-submit {
+  background-color: var(--black);
+  border: none;
+  color: white;
+}
+
+.button-submit:hover {
+  background-color: var(--accent);
+}
+
+body {
+  min-height: 100vh;
+}
+
+.login {
+  width: 50%;
+}
+
+/* NAVIGATION */
+
+.navigation {
+  width: 280px;
+  background: var(--black);
+  transition: 0.5s;
+}
+
+.navigation.active {
+  width: 0;
+}
+
+.navigation ul li:hover,
+.navigation ul .active,
+td .acto {
+  background-color: var(--accent);
+}
+
+/* MAIN */
+
+.main {
+  width: calc(100% - 300px);
+  left: 280px;
+  min-height: 100vh;
+  background: var(--white);
+  transition: 0.5s;
+}
+
+.main.active {
+  width: calc(100% - 80px);
+  left: 30px;
+}
+
+.toggle {
+  width: 60px;
+  height: 60px;
+  font-size: 2.5rem;
+  cursor: pointer;
+}
+
+/* CARDS */
+.boxes {
+  grid-template-columns: 2fr 1fr;
+  grid-gap: 30px;
+}
+
+.shadows {
+  box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);
+}
+
+.boxes .shadows table tr,
+table tbody tr {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.boxes .shadows table tr:last-child,
+table tbody tr:last-child {
+  border-bottom: none;
+}
+
+.cardHeader .button,
+.container .button {
+  background: var(--black);
+}
+
+.cardHeader .button:hover,
+.container .button:hover {
+  background: var(--accent);
+}
+
+tbody td.description {
+  width: 350px;
+}
+
+td.photo .frame {
+  width: 90px;
+  height: 90px;
+}
+
+td.action svg:hover,
+.back:hover {
+  color: var(--accent);
+}
+
+.custom-file-upload {
+  height: 200px;
+  width: 300px;
+  gap: 20px;
+  cursor: pointer;
+  border: 2px dashed #cacaca;
+  background-color: rgba(255, 255, 255, 1);
+  padding: 1.5rem;
+}
+
+.custom-file-upload .icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.custom-file-upload .icon svg {
+  height: 80px;
+  fill: rgba(75, 85, 99, 1);
+}
+
+.custom-file-upload .text {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.custom-file-upload .text span {
+  font-weight: 400;
+  color: rgba(75, 85, 99, 1);
+}
+
+.custom-file-upload input {
+  display: none;
+}
+
+#preview-container {
+  display: none;
+  position: relative;
+  width: 300px;
+  height: 0;
+  border-radius: 5%;
+}
+
+.bukti-tf {
+  width: 160px;
+}
+
+#preview-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.toggle-password {
+  right: 10px;
+  cursor: pointer;
+}
+
+/* RESPONSIVE DESIGN */
+@media (max-width: 1024px) {
+  .navigation {
+    left: -400px;
+  }
+  .navigation.active {
+    width: 300px;
+    left: 0;
+  }
+  .main {
+    width: 100%;
+    left: 0;
+  }
+  .main.active {
+    left: 300px;
+  }
+  .cardBox {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .boxes {
+    grid-template-columns: 1fr;
+  }
+  .shadows {
+    overflow-x: auto;
+  }
+  .login {
+    width: 75%;
+  }
+  tbody td.description {
+    width: auto;
+  }
+}
+
+@media (max-width: 480px) {
+  .main {
+    padding-right: 20px;
+  }
+  .cardHeader h2 {
+    font-size: 20px;
+  }
+  .navigation {
+    width: 100%;
+    left: -100%;
+    z-index: 1000;
+  }
+  .navigation.active {
+    width: 100%;
+    left: 0;
+  }
+  .toggle {
+    z-index: 10001;
+  }
+  .main.active .toggle {
+    color: var(--white);
+    position: fixed;
+    right: 0;
+    left: initial;
+  }
+  .main.active {
+    width: 0;
+  }
+  footer {
+    position: relative;
+  }
+  footer.active {
+    display: none;
+  }
+  .login {
+    width: 100%;
+  }
+  tbody td.description {
+    width: 30px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+}

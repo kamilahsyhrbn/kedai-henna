@@ -1,0 +1,1 @@
+<script>window.location = "masuk.php"</script>
