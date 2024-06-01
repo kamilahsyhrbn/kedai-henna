@@ -33,6 +33,28 @@ $pembelian = mysqli_query($conn, "SELECT tb_pelanggan.nama_pelanggan, tb_pembeli
                 </div>
             </div>
         </div>
+        <div class="upBoxes position-relative w-100 d-grid py-2 ps-4">
+            <div class="position-relative d-grid p-3 rounded-4 bg-body shadows">
+                <div class="d-flex justify-content-between align-items-start">
+                    <h5 class="fw-bold">Total Produk</h5>
+                </div>
+            </div>
+            <div class="position-relative d-grid p-3 rounded-4 bg-body shadows">
+                <div class="d-flex justify-content-between align-items-start">
+                    <h5 class="fw-bold">Total Pesanan</h5>
+                </div>
+            </div>
+            <div class="position-relative d-grid p-3 rounded-4 bg-body shadows">
+                <div class="d-flex justify-content-between align-items-start">
+                    <h5 class="fw-bold">Total Pelanggan</h5>
+                </div>
+            </div>
+            <div class="position-relative d-grid p-3 rounded-4 bg-body shadows">
+                <div class="d-flex justify-content-between align-items-start">
+                    <h5 class="fw-bold">Total Pemasukan</h5>
+                </div>
+            </div>
+        </div>
         <div class="boxes position-relative w-100 d-grid py-2 ps-4">
             <div class="shadows position-relative d-grid p-3 rounded-4 bg-body">
                 <div class="cardHeader d-flex justify-content-between align-items-start">

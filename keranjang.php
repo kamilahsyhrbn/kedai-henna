@@ -3,6 +3,14 @@ $title = 'Keranjang Belanja';
 $page = 'keranjang';
 include_once ("navbar.php");
 
+if (!isUserLoggedIn()) {
+    $_SESSION['alert'] = '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+    Anda harus masuk terlebih dahulu!
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>';
+    echo "<script>window.location='masuk.php'</script>";
+}
+
 $result1 = mysqli_query($conn, "SELECT * FROM tb_pembelian WHERE id_pelanggan = '" . $_SESSION['id_pelanggan'] . "' AND status_pembelian IS NULL ORDER BY tanggal_pembelian DESC LIMIT 1");
 $order = $result1->fetch_assoc();
 

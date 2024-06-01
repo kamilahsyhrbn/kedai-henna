@@ -2,7 +2,7 @@
 $title = 'Belanja';
 $page = 'belanja';
 include_once ("navbar.php");
-$result = mysqli_query($conn, "SELECT * FROM tb_produk WHERE status = 'Tersedia'");
+$result = mysqli_query($conn, "SELECT * FROM tb_produk");
 ?>
 
 <body>

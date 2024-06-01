@@ -3,6 +3,14 @@ $title = 'Buat Akun';
 $page = 'daftar';
 include_once ("navbar.php");
 
+if (isUserLoggedIn()) {
+    $_SESSION['login-alert'] = '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+    Anda sudah masuk!
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>';
+    echo "<script>window.location='index.php'</script>";
+}
+
 date_default_timezone_set('Asia/Jakarta');
 if (isset($_POST['button-submit'])) {
     $nama_pelanggan = ucwords($_POST['nama_pelanggan']);
@@ -36,8 +44,11 @@ if (isset($_POST['button-submit'])) {
                                 )");
 
         if ($insert) {
-            $alert = urlencode('<div class="alert alert-success alert-dismissible fade show" role="alert">Berhasil membuat akun! <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>');
-            echo "<script>window.location='masuk.php?alert=$alert'</script>";
+            $_SESSION['alert'] = '<div class="alert alert-success alert-dismissible fade show" role="alert">
+            Berhasil membuat akun!
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>';
+            echo "<script>window.location='masuk.php'</script>";
         } else {
             echo "<script>displayModal('Registration Failed: " . mysqli_error($conn) . "');</script>";
         }
@@ -92,7 +103,7 @@ if (isset($_POST['button-submit'])) {
                     </div>
                     <div class="d-flex flex-column align-items-center">
                         <button class="button-submit mb-2 fw-bold" type="submit" onclick="register()"
-                            name="button-submit">REGISTER</button>
+                            name="button-submit">DAFTAR</button>
                         <p class="p">Sudah punya akun? <a href="masuk.php" class="accent fw-semibold">MASUK</a></p>
                     </div>
                 </form>

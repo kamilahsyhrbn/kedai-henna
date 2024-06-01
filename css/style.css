@@ -325,6 +325,11 @@ a {
   cursor: pointer;
 }
 
+/* Dropdown */
+.dropdown-menu {
+  transform: translateX(-50%);
+}
+
 /* RESPONSIVE */
 @media screen and (max-width: 375px) {
   .input-container .underline,
@@ -341,5 +346,14 @@ a {
 
   .input-margin {
     margin-left: 0;
+  }
+  .dropdown-menu {
+    transform: translateX(0);
+  }
+}
+
+@media screen and (max-width: 769px) {
+  .dropdown-menu {
+    transform: translateX(0);
   }
 }

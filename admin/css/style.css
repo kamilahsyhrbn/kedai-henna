@@ -89,6 +89,11 @@ td .acto {
   grid-gap: 30px;
 }
 
+.upBoxes {
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-gap: 30px;
+}
+
 .shadows {
   box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);
 }
@@ -212,6 +217,9 @@ td.action svg:hover,
 
 @media (max-width: 768px) {
   .boxes {
+    grid-template-columns: 1fr;
+  }
+  .upBoxes {
     grid-template-columns: 1fr;
   }
   .shadows {

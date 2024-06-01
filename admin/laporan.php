@@ -137,8 +137,9 @@ if (isset($_POST['button-submit'])) {
                         </div>
                     <?php } else { ?>
                         <div class="text-center fw-semibold">
-                            Belum ada laporan dengan status <?= $status ?> pada tanggal <?= $tanggal_mulai ?> hingga
-                            <?= $tanggal_akhir ?>
+                            Belum ada laporan dengan status <?= $status ?> pada tanggal <?= $tanggal_mulai_formatted ?>
+                            hingga
+                            <?= $tanggal_akhir_formatted ?>
                         </div>
                     <?php } ?>
                 </div>

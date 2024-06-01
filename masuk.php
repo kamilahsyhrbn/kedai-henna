@@ -7,6 +7,15 @@ if (isset($_GET['alert'])) {
     $_SESSION['alert'] = urldecode($_GET['alert']);
 }
 
+
+if (isUserLoggedIn()) {
+    $_SESSION['login-alert'] = '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+    Anda sudah masuk!
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>';
+    echo "<script>window.location='index.php'</script>";
+}
+
 if (isset($_POST['button-submit'])) {
     $email = $_POST['email_pelanggan'];
     $password = $_POST['password_pelanggan'];

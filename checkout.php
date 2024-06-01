@@ -3,6 +3,14 @@ $title = 'Checkout';
 $page = 'keranjang';
 include_once ("navbar.php");
 
+if (!isUserLoggedIn()) {
+    $_SESSION['alert'] = '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+    Anda harus masuk terlebih dahulu!
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>';
+    echo "<script>window.location='masuk.php'</script>";
+}
+
 if (isset($_SESSION['id_pelanggan'])) {
     $id_pelanggan = $_SESSION['id_pelanggan'];
     $pelanggan = mysqli_query($conn, "SELECT * FROM tb_pelanggan WHERE id_pelanggan = '$id_pelanggan'");
@@ -61,7 +69,7 @@ if (isset($_POST['checkout'])) {
             echo '<script>window.location="pesanan.php"</script>';
         } else {
             echo "<div class='container'><div class='alert alert-danger text-center' role='alert'>
-                Gagal
+                Gagal melakukan checkout!
               </div></div>";
         }
     }
