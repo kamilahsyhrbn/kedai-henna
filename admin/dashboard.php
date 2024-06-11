@@ -13,6 +13,22 @@ if (isset($_SESSION['id'])) {
 }
 $pelanggan = mysqli_query($conn, "SELECT * FROM tb_pelanggan ORDER BY tanggal_bergabung DESC LIMIT 3");
 $pembelian = mysqli_query($conn, "SELECT tb_pelanggan.nama_pelanggan, tb_pembelian.* FROM tb_pembelian JOIN tb_pelanggan ON tb_pelanggan.id_pelanggan = tb_pembelian.id_pelanggan WHERE status_pembelian = 'Menunggu Konfirmasi' ORDER BY tanggal_pembelian DESC LIMIT 4");
+
+$jumlah_produk = mysqli_query($conn, "SELECT COUNT(*) as total_produk FROM tb_produk");
+$jumlah_pesanan = mysqli_query($conn, "SELECT COUNT(*) as total_pesanan FROM tb_pembelian WHERE status_pembelian IS NOT NULL");
+$jumlah_pelanggan = mysqli_query($conn, "SELECT COUNT(*) as total_pelanggan FROM tb_pelanggan");
+$pemasukkan = mysqli_query($conn, "SELECT * FROM tb_pembelian WHERE status_pembelian = 'Selesai'");
+
+$total_pemasukan = 0;
+
+while ($jumlah_pemasukkan = mysqli_fetch_array($pemasukkan)) {
+    $total_pemasukan += $jumlah_pemasukkan['total_harga'];
+}
+;
+
+$data_produk = mysqli_fetch_assoc($jumlah_produk);
+$data_pesanan = mysqli_fetch_assoc($jumlah_pesanan);
+$data_pelanggan = mysqli_fetch_assoc($jumlah_pelanggan);
 ?>
 
 
@@ -37,21 +53,25 @@ $pembelian = mysqli_query($conn, "SELECT tb_pelanggan.nama_pelanggan, tb_pembeli
             <div class="position-relative d-grid p-3 rounded-4 bg-body shadows">
                 <div class="d-flex justify-content-between align-items-start">
                     <h5 class="fw-bold">Total Produk</h5>
+                    <h3 class="fw-bold accent"><?= $data_produk['total_produk'] ?></h3>
                 </div>
             </div>
             <div class="position-relative d-grid p-3 rounded-4 bg-body shadows">
                 <div class="d-flex justify-content-between align-items-start">
                     <h5 class="fw-bold">Total Pesanan</h5>
+                    <h3 class="fw-bold accent"><?= $data_pesanan['total_pesanan'] ?></h3>
                 </div>
             </div>
             <div class="position-relative d-grid p-3 rounded-4 bg-body shadows">
                 <div class="d-flex justify-content-between align-items-start">
                     <h5 class="fw-bold">Total Pelanggan</h5>
+                    <h3 class="fw-bold accent"><?= $data_pelanggan['total_pelanggan'] ?></h3>
                 </div>
             </div>
             <div class="position-relative d-grid p-3 rounded-4 bg-body shadows">
                 <div class="d-flex justify-content-between align-items-start">
                     <h5 class="fw-bold">Total Pemasukan</h5>
+                    <h4 class="fw-bold accent"><?= $total_pemasukan ?></h4>
                 </div>
             </div>
         </div>

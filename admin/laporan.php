@@ -35,7 +35,7 @@ if (isset($_POST['button-submit'])) {
                     <h2 class="fw-semibold text-center mt-2">Laporan</h2>
                 </div>
             </div>
-            <form action="" method="POST">
+            <form id="reportForm" method="POST">
                 <div class="shadows position-relative p-3 rounded-4 bg-body mb-3">
                     <div class="d-flex align-items-center justify-content-between">
                         <div>
@@ -82,12 +82,11 @@ if (isset($_POST['button-submit'])) {
                         </div>
                         <?php if (mysqli_num_rows($result) > 0) { ?>
                             <div>
-                                <form method="POST">
-                                    <button type="submit" class="button py-2 px-4 text-white fw-semibold rounded border-0"
-                                        name="cetak">
-                                        CETAK
-                                    </button>
-                                </form>
+                                <button type="button"
+                                    class="button py-2 px-4 text-white fw-semibold rounded border-0 cetak-btn"
+                                    onclick="submitForm()">
+                                    CETAK
+                                </button>
                             </div>
                         <?php } else { ?>
                             <div>
@@ -146,5 +145,22 @@ if (isset($_POST['button-submit'])) {
             </form>
         </div>
     </div>
+
+    <!-- <script>
+        function submitForm() {
+            var form = document.getElementById("reportForm");
+            form.action = "cetak-laporan.php"; // Set action form
+            form.submit(); // Submit form
+        }
+    </script> -->
+    <script>
+        function submitForm() {
+            var form = document.getElementById("reportForm");
+            var formData = new FormData(form);
+
+            var params = new URLSearchParams(formData).toString();
+            window.open('cetak-laporan.php?' + params, '_blank');
+        }
+    </script>
     <?php include_once ("footer.php") ?>
 </body>

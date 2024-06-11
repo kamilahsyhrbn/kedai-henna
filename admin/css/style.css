@@ -14,6 +14,21 @@
   --light-gray: #efefef;
 }
 
+.logo {
+  position: relative;
+  width: 100px;
+  height: 100px;
+}
+
+.logo img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
 .back,
 td.action svg {
   text-decoration: none;
@@ -128,7 +143,8 @@ td.photo .frame {
 }
 
 td.action svg:hover,
-.back:hover {
+.back:hover,
+.accent {
   color: var(--accent);
 }
 

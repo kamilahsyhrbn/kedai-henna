@@ -1,3 +1,37 @@
+<?php
+include 'admin/backend/koneksi.php';
+session_start();
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
+function isUserLoggedIn()
+{
+    return isset($_SESSION['id_pelanggan']);
+}
+
+if (!isUserLoggedIn()) {
+    $_SESSION['alert'] = '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+    Anda harus masuk terlebih dahulu!
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>';
+    echo "<script>window.location='masuk.php'</script>";
+}
+$id_pembelian = $_GET['id_pembelian'];
+
+
+$result1 = mysqli_query($conn, "SELECT tb_pembelian.*, tb_pelanggan.* FROM tb_pembelian 
+                                      JOIN tb_pelanggan ON tb_pelanggan.id_pelanggan = tb_pembelian.id_pelanggan  
+                                      WHERE id_pembelian = '" . $id_pembelian . "' AND tb_pembelian.id_pelanggan = '" . $_SESSION['id_pelanggan'] . "' ");
+$row1 = $result1->fetch_assoc();
+
+$result2 = mysqli_query($conn, "SELECT tb_produk.*, tb_detail_pembelian.* FROM tb_detail_pembelian 
+                                    JOIN tb_produk ON tb_produk.id_produk = tb_detail_pembelian.id_produk 
+                                    WHERE tb_detail_pembelian.id_pembelian = '" . $id_pembelian . "'");
+
+$total_belanja = 0;
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -22,6 +56,9 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
 
+<!-- Download PDF -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.min.js"></script>
+
 </head>
 
 <body class="p-3">
@@ -39,9 +76,9 @@
             <div class="col-6">
                 <h3>Penerima</h3>
                 <div class="row">
-                    <span class="fw-bold fs-5">John Doe</span>
-                    <span>Jl. Bumi </span>
-                    <span>081234567890 </span>
+                    <span class="fw-bold fs-5"><?= $row1['nama_pelanggan'] ?></span>
+                    <span><?= $row1['alamat_pelanggan'] ?></span>
+                    <span><?= $row1['telepon_pelanggan'] ?></span>
                 </div>
             </div>
             <div class="col-6">
@@ -65,38 +102,31 @@
                 </thead>
 
                 <tbody>
-                    <tr>
-                        <td>
-                            <p>Nama Produk</p>
-                        </td>
-                        <td>
-                            <p>1</p>
-                        </td>
-                        <td>
-                            <p>Rp xxx.xxx</p>
-                        </td>
-                        <td>
-                            <p>Rp xxx.xxx</p>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <p>Nama Produk</p>
-                        </td>
-                        <td>
-                            <p>1</p>
-                        </td>
-                        <td>
-                            <p>Rp xxx.xxx</p>
-                        </td>
-                        <td>
-                            <p>Rp xxx.xxx</p>
-                        </td>
-                    </tr>
+                    <?php
+                    while ($row2 = mysqli_fetch_assoc($result2)) {
+                        ?>
+                        <tr>
+                            <td>
+                                <p><?= $row2['nama_produk'] ?></p>
+                            </td>
+                            <td>
+                                <p><?= $row2['total_jumlah'] ?></p>
+                            </td>
+                            <td>
+                                <p>Rp <?= $row2['harga_produk'] ?></p>
+                            </td>
+                            <td>
+                                <p>Rp <?= $row2['total_harga'] ?></p>
+                            </td>
+                        </tr>
+                        <?php
+                        $total_belanja += $row2['total_harga'];
+                    } ?>
+
 
                 </tbody>
             </table>
-            <p class="fw-bolder text-end">TOTAL : Rp xxx.xxx</p>
+            <p class="fw-bolder text-end">TOTAL : Rp <?= $total_belanja ?></p>
         </div>
 
         <!-- Bootstrap JS -->
@@ -106,6 +136,23 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
             integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy"
             crossorigin="anonymous"></script>
+
+        <?php
+        $fileName =
+            'Nota-' . $row1['id_pembelian'] . " " . $row1['nama_pelanggan'] . '.pdf';
+        ?>
+
+        <!-- Download PDF -->
+        <script>
+            window.onload = function () {
+                var fileName = <?php echo json_encode($fileName); ?>;
+                // Menggunakan html2pdf untuk mengkonversi halaman menjadi PDF
+                html2pdf().from(document.body).save(fileName).then(function () {
+                    // Menutup tab setelah download selesai
+                    window.close();
+                });
+            };
+        </script>
 </body>
 
 </html>
