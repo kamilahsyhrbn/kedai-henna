@@ -68,7 +68,13 @@ if (isUserLoggedIn()) {
                         </li>
                         <li class="nav-item d-flex align-items-center">
                             <a <?php if ($page === 'belanja') { ?> class="nav-link active" <?php } else { ?>
-                                    class="nav-link" <?php } ?> href="belanja.php">Belanja</a>
+                                    class="nav-link" <?php } ?> href="belanja.php">
+                                    <?php if (isUserLoggedIn()): ?>
+                                    Belanja
+                                    <?php else: ?>
+                                    Produk
+                                    <?php endif; ?>
+                                </a>
                         </li>
                         <?php if (isUserLoggedIn()): ?>
                             <li class="nav-icon d-flex align-items-center">

@@ -85,7 +85,7 @@ if (isset($_POST['btnCart'])) {
             <?php if (isUserLoggedIn()): ?>
                 <div class="col-lg-7">
                     <h2 class="fw-semibold mt-5"><?php echo $p->nama_produk; ?></h2>
-                    <span class="accent"><?php echo $p->harga_produk; ?></span>
+                    <span class="accent">Rp <?php echo $p->harga_produk; ?></span>
                     <p class="mt-3"><?php echo $p->deskripsi_produk; ?></p>
                     <div class="d-flex align-items-center my-5">
                         <div class="card-count rounded text-center d-flex justify-content-between align-items-center">
@@ -114,7 +114,7 @@ if (isset($_POST['btnCart'])) {
             <?php else: ?>
                 <div class="col-lg-7">
                     <h2 class="fw-semibold mt-5"><?php echo $p->nama_produk; ?></h2>
-                    <span class="accent"><?php echo $p->harga_produk; ?></span>
+                    <span class="accent">Rp <?php echo $p->harga_produk; ?></span>
                     <p class="mt-3"><?php echo $p->deskripsi_produk; ?></p>
                     <div class="my-5">
                         <a href="masuk.php">

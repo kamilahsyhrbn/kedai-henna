@@ -42,7 +42,8 @@ $result = mysqli_query($conn, "SELECT * FROM tb_produk WHERE status = 'Tersedia'
                                 class="card-image d-flex align-items-center justify-content-center rounded-3  overflow-hidden mb-3">
                                 <img src="admin/images/<?php echo $row['foto_produk'] ?>" class="object-fit-cover">
                             </div>
-                            <h5 class="fw-semibold overflow-hidden"><?php echo $row['nama_produk'] ?></h5>
+                            <h5 class="fw-semibold overflow-hidden mb-0"><?php echo $row['nama_produk'] ?></h5>
+                            <p class="my-1 accent">Rp <?php echo $row['harga_produk'] ?></p>
                             <p class="overflow-hidden desc"><?php echo $row['deskripsi_produk'] ?></p>
                         </div>
                     </a>
