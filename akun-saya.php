@@ -1,7 +1,7 @@
 <?php
 $title = 'Akun Saya';
 $page = 'akun';
-include_once ("navbar.php");
+include_once "navbar.php";
 
 if (isset($_SESSION['id_pelanggan'])) {
     $id_pelanggan = $_SESSION['id_pelanggan'];
@@ -37,5 +37,5 @@ if (isset($_SESSION['id_pelanggan'])) {
             </div>
         </div>
     </div>
-    <?php include_once ("footer.php") ?>
+    <?php include_once "footer.php" ?>
 </body>

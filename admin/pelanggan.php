@@ -1,7 +1,7 @@
 <?php
 $title = 'Pelanggan';
 $page = 'pelanggan';
-include_once ("sidebar.php");
+include_once "sidebar.php";
 
 $pelanggan = mysqli_query($conn, "SELECT * FROM tb_pelanggan");
 
@@ -96,10 +96,10 @@ $pelanggan = mysqli_query($conn, "SELECT * FROM tb_pelanggan");
                 const button = event.relatedTarget; // Tombol yang diklik untuk membuka modal
                 const idPelanggan = button.getAttribute('data-id'); // Ambil id_pelanggan dari atribut data-id
                 const confirmDelete = document.getElementById('confirm-delete');
-                confirmDelete.href = `../admin/backend/hapus.php?idpelanggan=${idPelanggan}`; // Set href dengan id_pelanggan yang benar
+                confirmDelete.href = `../admin/hapus.php?idpelanggan=${idPelanggan}`; // Set href dengan id_pelanggan yang benar
             });
         });
 
     </script>
-    <?php include_once ("footer.php") ?>
+    <?php include_once "footer.php" ?>
 </body>

@@ -1,7 +1,7 @@
 <?php
 $title = 'Produk';
 $page = 'produk';
-include_once ("sidebar.php");
+include_once "sidebar.php";
 $result = mysqli_query($conn, "SELECT * FROM tb_produk");
 ?>
 
@@ -114,10 +114,10 @@ $result = mysqli_query($conn, "SELECT * FROM tb_produk");
                 const button = event.relatedTarget; // Tombol yang diklik untuk membuka modal
                 const idProduk = button.getAttribute('data-id'); // Ambil id_produk dari atribut data-id
                 const confirmDelete = document.getElementById('confirm-delete');
-                confirmDelete.href = `../admin/backend/hapus.php?idproduk=${idProduk}`; // Set href dengan id_produk yang benar
+                confirmDelete.href = `../admin/hapus.php?idproduk=${idProduk}`; // Set href dengan id_produk yang benar
             });
         });
 
     </script>
-    <?php include_once ("footer.php") ?>
+    <?php include_once "footer.php" ?>
 </body>

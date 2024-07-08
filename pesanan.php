@@ -1,7 +1,7 @@
 <?php
 $title = 'Akun Saya | Pesanan';
 $page = 'pesanan';
-include_once ("navbar.php");
+include_once "navbar.php";
 
 if (isset($_SESSION['id_pelanggan'])) {
     $id_pelanggan = $_SESSION['id_pelanggan'];
@@ -104,5 +104,5 @@ $result1 = mysqli_query($conn, "SELECT * FROM tb_pembelian WHERE id_pelanggan = 
         });
     </script>
 
-    <?php include_once ("footer.php") ?>
+    <?php include_once "footer.php" ?>
 </body>

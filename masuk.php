@@ -1,11 +1,7 @@
 <?php
 $title = 'Masuk';
 $page = 'masuk';
-include_once ("navbar.php");
-
-if (isset($_GET['alert'])) {
-    $_SESSION['alert'] = urldecode($_GET['alert']);
-}
+include_once "navbar.php";
 
 
 if (isUserLoggedIn()) {
@@ -24,7 +20,7 @@ if (isset($_POST['button-submit'])) {
 
     if (mysqli_num_rows($cek) > 0) {
         $d = mysqli_fetch_object($cek);
-        $_SESSION['status_login'] = true;
+        $_SESSION['status_login_user'] = true;
         $_SESSION['a_global'] = $d;
         $_SESSION['id_pelanggan'] = $d->id_pelanggan;
         $_SESSION['login-alert'] = '<div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -92,7 +88,7 @@ if (isset($_POST['button-submit'])) {
             </div>
         </div>
     </div>
-    <?php include_once ("footer.php") ?>
+    <?php include_once "footer.php" ?>
     <script>
         function login() {
             var email = document.getElementById('email_pengguna').value;

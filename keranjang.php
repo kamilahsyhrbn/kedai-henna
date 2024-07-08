@@ -1,7 +1,7 @@
 <?php
 $title = 'Keranjang Belanja';
 $page = 'keranjang';
-include_once ("navbar.php");
+include_once "navbar.php";
 
 if (!isUserLoggedIn()) {
     $_SESSION['alert'] = '<div class="alert alert-danger alert-dismissible fade show" role="alert">
@@ -55,7 +55,7 @@ if (isset($_POST['deleteAllCart'])) {
             <main>
                 <h2 class="mb-5 text-center">Keranjang Belanja</h2>
                 <div class="row">
-                    <div class="col-6">
+                    <div class="col-sm-6">
                         <?php if ($result1->num_rows > 0) { ?>
                             <div class="list-group">
                                 <?php while ($row = mysqli_fetch_assoc($result2)) { ?>
@@ -102,9 +102,9 @@ if (isset($_POST['deleteAllCart'])) {
                             </div>
                         <?php } ?>
                     </div>
-                    <div class=" col-lg-1">
+                    <div class="col-sm-1 py-3">
                     </div>
-                    <div class="col-5">
+                    <div class="col-sm-5">
                         <div class="border-bottom">
                             <h3 class="mb-3 fw-semibold">Total Keranjang</h3>
                         </div>
@@ -136,5 +136,5 @@ if (isset($_POST['deleteAllCart'])) {
 
 
     </div>
-    <?php include_once ("footer.php") ?>
+    <?php include_once "footer.php" ?>
 </body>

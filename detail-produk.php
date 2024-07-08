@@ -1,7 +1,7 @@
 <?php
 $title = 'Detail Produk';
 $page = 'belanja';
-include_once ("navbar.php");
+include_once "navbar.php";
 
 $produk = mysqli_query($conn, "SELECT * FROM tb_produk WHERE id_produk = '" . $_GET['id'] . "' ");
 if (mysqli_num_rows($produk) == 0) {
@@ -88,17 +88,17 @@ if (isset($_POST['btnCart'])) {
                     <span class="accent">Rp <?php echo $p->harga_produk; ?></span>
                     <p class="mt-3"><?php echo $p->deskripsi_produk; ?></p>
                     <div class="d-flex align-items-center my-5">
-                        <div class="card-count rounded text-center d-flex justify-content-between align-items-center">
-                            <button onclick="decrement()" class="m-2" <?php $p->stok == 0 ? 'disabled' : '' ?>>-</button>
-                            <p id="counter" class="my-1">1</p>
-                            <button onclick="increment()" class="m-2" <?php $p->stok == 0 ? 'disabled' : '' ?>>+</button>
-                        </div>
                         <?php if ($p->stok == 0) { ?>
-                            <div class="text-center ms-5">
+                            <div class="text-center">
                                 Stok produk telah habis!
                             </div>
                         <?php } else { ?>
-                            <form action="" method="POST">
+                            <div class="card-count rounded text-center d-flex justify-content-between align-items-center">
+                                <button onclick="decrement()" class="m-2" <?php $p->stok == 0 ? 'disabled' : '' ?>>-</button>
+                                <p id="counter" class="my-1">1</p>
+                                <button onclick="increment()" class="m-2" <?php $p->stok == 0 ? 'disabled' : '' ?>>+</button>
+                            </div>
+                            <form action="" method="POST" class="me-3">
                                 <input type="hidden" name="qty" id="qty">
                                 <input type="hidden" value="<?php echo $p->id_produk ?>" name="id_produk">
                                 <button class="button-submit w-100 ms-4 mb-1 text-white rounded-3 fw-bold"
@@ -129,7 +129,7 @@ if (isset($_POST['btnCart'])) {
             </div>
         </div>
 
-        <?php include_once ("footer.php") ?>
+        <?php include_once "footer.php" ?>
         <script>
             let counterValue = 1;
             document.getElementById('qty').value = counterValue;

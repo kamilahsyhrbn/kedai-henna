@@ -1,9 +1,18 @@
 <?php
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
-include ("backend/koneksi.php");
+// error_reporting(E_ALL);
+// ini_set('display_errors', 1);
+include "config/koneksi.php";
 
 session_start();
+
+
+if ($_SESSION['status_login_admin'] === true) {
+    $_SESSION['login'] = '<div class="alert alert-danger" role="alert">Anda sudah masuk!</div>';
+    echo "<script>window.location='dashboard.php'</script>";
+    exit();
+}
+
+
 if (isset($_POST['button'])) {
 
     $user = $_POST['username'];
@@ -18,9 +27,9 @@ if (isset($_POST['button'])) {
             "'");
         if (mysqli_num_rows($cek) > 0) {
             $d = mysqli_fetch_object($cek);
-            $_SESSION['status_login'] = true;
+            $_SESSION['status_login_admin'] = true;
             $_SESSION['a_global'] = $d;
-            $_SESSION['id'] = $d->id_admin;
+            $_SESSION['id_admin'] = $d->id_admin;
             echo "<script>window.location = 'dashboard.php'</script>";
             $_SESSION['login'] = '<div class="alert alert-success alert-dismissible fade show" role="alert">
             Berhasil Masuk!

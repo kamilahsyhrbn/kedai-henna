@@ -331,7 +331,7 @@ a {
 }
 
 /* RESPONSIVE */
-@media screen and (max-width: 375px) {
+@media screen and (max-width: 767px) {
   .input-container .underline,
   .input-container input[type="text"],
   .input-container input[type="email"],
@@ -341,19 +341,45 @@ a {
 
   .input-container .label {
     text-wrap: wrap;
-    width: 310px;
+    width: auto;
   }
 
   .input-margin {
-    margin-left: 0;
+    margin-left: auto;
+    margin-right: auto;
   }
+
   .dropdown-menu {
     transform: translateX(0);
+  }
+  .card {
+    width: auto;
+    height: 350px;
+    max-width: auto;
+  }
+  .row {
+    margin-left: 2px;
+    margin-right: 2px;
+  }
+  .toggle-password {
+    /* display: none; */
+    left: 275px;
+  }
+  .button-submit {
+    width: 100%;
   }
 }
 
-@media screen and (max-width: 769px) {
+@media screen and (max-width: 1023px) {
   .dropdown-menu {
     transform: translateX(0);
+  }
+
+  .input-margin {
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .card {
+    margin: auto;
   }
 }

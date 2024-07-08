@@ -1,7 +1,7 @@
 <?php
 $title = 'Belanja';
 $page = 'belanja';
-include_once ("navbar.php");
+include_once "navbar.php";
 $result = mysqli_query($conn, "SELECT * FROM tb_produk");
 ?>
 
@@ -31,5 +31,5 @@ $result = mysqli_query($conn, "SELECT * FROM tb_produk");
             <?php } ?>
         </div>
     </div>
-    <?php include_once ("footer.php") ?>
+    <?php include_once "footer.php" ?>
 </body>

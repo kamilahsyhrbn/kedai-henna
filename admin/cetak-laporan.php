@@ -1,6 +1,6 @@
 <?php
 session_start();
-include 'backend/koneksi.php';
+include 'config/koneksi.php';
 
 // error_reporting(E_ALL);
 // ini_set('display_errors', 1);

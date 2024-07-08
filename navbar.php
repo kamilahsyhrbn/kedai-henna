@@ -1,12 +1,14 @@
 <?php
-include 'admin/backend/koneksi.php';
+include 'admin/config/koneksi.php';
 session_start();
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
+
 function isUserLoggedIn()
 {
     return isset($_SESSION['id_pelanggan']);
 }
+
 if (isUserLoggedIn()) {
     $result1 = mysqli_query($conn, "SELECT * FROM tb_pembelian WHERE id_pelanggan = '" . $_SESSION['id_pelanggan'] . "' AND status_pembelian IS NULL LIMIT 1");
     $order = $result1->fetch_assoc();

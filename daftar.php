@@ -1,7 +1,7 @@
 <?php
 $title = 'Buat Akun';
 $page = 'daftar';
-include_once ("navbar.php");
+include_once "navbar.php";
 
 if (isUserLoggedIn()) {
     $_SESSION['login-alert'] = '<div class="alert alert-danger alert-dismissible fade show" role="alert">
@@ -116,7 +116,7 @@ if (isset($_POST['button-submit'])) {
             </div>
         </div>
     </div>
-    <?php include_once ("footer.php") ?>
+    <?php include_once "footer.php" ?>
     <script>
         function register() {
             var nama_pelanggan = document.getElementById('nama_pelanggan').value;

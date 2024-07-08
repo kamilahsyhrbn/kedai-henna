@@ -1,87 +1,97 @@
 <?php
-$title = 'Profil Admin';
-$page = 'profil';
+$title = 'Tambah Admin';
+$page = 'admin';
 include_once "sidebar.php";
 
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
-if (isset($_SESSION['id'])) {
-    $id_admin = $_SESSION['id'];
-    $admin = mysqli_query($conn, "SELECT * FROM tb_admin WHERE id_admin = '$id_admin'");
-    $a = mysqli_fetch_object($admin);
-}
-
 if (isset($_POST['button-submit'])) {
     $nama_admin = ucwords($_POST['namaAdmin']);
+    $username = $_POST['username'];
     $email = $_POST['email'];
-    $password = $_POST['password'];
+    $password = md5($_POST['password']);
 
-    if (!empty($password)) {
-        $hashed_password = md5($password);
-        $sql = "UPDATE tb_admin SET
-            nama_admin = '$nama_admin',
-            email = '$email',
-            password = '$hashed_password'";
-    } else {
-        $sql = "UPDATE tb_admin SET
-            nama_admin = '$nama_admin',
-            email = '$email'";
-    }
+    $email = mysqli_real_escape_string($conn, $email);
+    $username = mysqli_real_escape_string($conn, $username);
 
+    // Periksa apakah email sudah terdaftar
+    $duplicateCheck = "SELECT * FROM tb_admin WHERE email = '$email' OR username ='$username'";
+    $result = mysqli_query($conn, $duplicateCheck);
 
-    $sql .= " WHERE id_admin = " . $a->id_admin;
-
-    if (mysqli_query($conn, $sql)) {
-        $_SESSION['profile'] = '<div class="mt-2"><div class="alert alert-success alert-dismissible fade show" role="alert">
-        Berhasil Mengubah Profil Admin!
+    if (mysqli_num_rows($result) > 0) {
+        echo '<div class="container"><div class="alert alert-danger alert-dismissible fade show" role="alert">
+        Username atau email yang Anda masukkan sudah terdaftar!
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
       </div></div>';
-        echo '<script>window.location="profil.php"</script>';
-        exit();
     } else {
-        $_SESSION['profile'] = '<div class="mt-2"><div class="alert alert-danger alert-dismissible fade show" role="alert">
-            Gagal Mengubah Profil!
+        // Lanjutkan dengan penyimpanan data jika email belum terdaftar
+        $nama_admin = ucwords($_POST['namaAdmin']);
+        $username = $_POST['username'];
+        $email = $_POST['email'];
+        $password = md5($_POST['password']);
+
+        $addAdmin = mysqli_query($conn, "INSERT INTO tb_admin
+        VALUES
+        (null, '" . $nama_admin . "', '" . $username . "', '" . $email . "', '" . $password . "')");
+        if ($addAdmin) {
+            $_SESSION['admin'] = '<div class="container"><div class="alert alert-success alert-dismissible fade show" role="alert">
+            Berhasil Menambahkan Admin!
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
           </div></div>';
+            echo "<script>window.location='data-admin.php'</script>";
+        } else {
+            echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+            Gagal Menambah Admin!
+             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+           </div>';
+        }
     }
+
 }
 
 ?>
 
 <body>
     <div class="container">
+        <div class="row mb-2">
+            <div class="col-lg-4">
+                <a href="data-admin.php" class="d-flex align-items-center back fs-5 ">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
+                        class="bi bi-chevron-left" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd"
+                            d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0" />
+                    </svg>
+                    Kembali
+                </a>
+            </div>
+        </div>
+
         <div class="position-relative w-100 d-grid py-2 ps-4">
-            <?php
-            if (isset($_SESSION['profile'])) {
-                echo $_SESSION['profile'];
-                unset($_SESSION['profile']);
-            } ?>
             <div class="shadows position-relative p-3 rounded-4 bg-body mb-3">
                 <div>
-                    <h2 class="fw-semibold text-center mt-2">Profil Admin</h2>
+                    <h2 class="fw-semibold text-center mt-2">Tambah Admin</h2>
                 </div>
             </div>
             <div class="shadows position-relative d-grid p-3 rounded-4 bg-body">
                 <form method="POST">
                     <div class="form-floating mb-2">
-                        <input type="text" class="form-control" id="namaAdmin" value="<?php echo $a->nama_admin ?>"
-                            name="namaAdmin">
+                        <input type="text" class="form-control" id="namaAdmin" placeholder="Nama Admin" name="namaAdmin"
+                            required>
                         <label for="namaAdmin">Nama Admin</label>
                     </div>
                     <div class="form-floating mb-2">
                         <input type="text" class="form-control" id="username" placeholder="Username" name="username"
-                            value="<?php echo $a->username ?>" disabled>
+                            required>
                         <label for="username">Username</label>
                     </div>
                     <div class="form-floating mb-2">
-                        <input type="email" class="form-control" id="email" placeholder="Email" name="email"
-                            value="<?php echo $a->email ?>">
+                        <input type="email" class="form-control" id="email" placeholder="Email" name="email" required>
                         <label for="email">Email</label>
                     </div>
                     <div class="form-floating mb-2 position-relative d-flex align-items-center">
-                        <input type="password" class="form-control" id="password" placeholder="Password"
-                            name="password">
+                        <input type="password" class="form-control" id="password" placeholder="Password" name="password"
+                            required>
                         <label for="password">Password</label>
                         <span id="togglePassword" class="toggle-password position-absolute me-3">
                             <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" fill="currentColor"
@@ -93,23 +103,23 @@ if (isset($_POST['button-submit'])) {
                             </svg>
                         </span>
                     </div>
-                    <p class="text-secondary">*Biarkan kosong jika tidak ada perubahan</p>
+                    <p class="text-secondary">*Masukkan username dengan benar karena username tidak dapat diubah setelah
+                        dibuat</p>
                     <div class="d-flex justify-content-center">
                         <button type="button" class="button-submit w-50 my-3 py-2 fw-bold rounded-3"
-                            data-bs-toggle="modal" data-bs-target="#exampleModal">SIMPAN
-                            PERUBAHAN</button>
+                            data-bs-toggle="modal" data-bs-target="#exampleModal">TAMBAH ADMIN</button>
                     </div>
                     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
                         aria-hidden="true">
                         <div class="modal-dialog">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Ubah Data Admin</h1>
+                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Tambah Akun Admin</h1>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal"
                                         aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
-                                    Apakah Anda yakin ingin menyimpan perubahan?
+                                    Apakah Anda yakin data yang dimasukkan sudah benar?
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary text-white"

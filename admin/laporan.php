@@ -1,7 +1,7 @@
 <?php
 $title = 'Laporan';
 $page = 'laporan';
-include_once ("sidebar.php");
+include_once "sidebar.php";
 
 if (isset($_POST['button-submit'])) {
     $tanggal_mulai = $_POST['tanggal_mulai'];
@@ -162,5 +162,5 @@ if (isset($_POST['button-submit'])) {
             window.open('cetak-laporan.php?' + params, '_blank');
         }
     </script>
-    <?php include_once ("footer.php") ?>
+    <?php include_once "footer.php" ?>
 </body>

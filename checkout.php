@@ -1,7 +1,7 @@
 <?php
 $title = 'Checkout';
 $page = 'keranjang';
-include_once ("navbar.php");
+include_once "navbar.php";
 
 if (!isUserLoggedIn()) {
     $_SESSION['alert'] = '<div class="alert alert-danger alert-dismissible fade show" role="alert">
@@ -183,5 +183,5 @@ if (isset($_POST['checkout'])) {
         </div>
 
     </div>
-    <?php include_once ("footer.php") ?>
+    <?php include_once "footer.php" ?>
 </body>

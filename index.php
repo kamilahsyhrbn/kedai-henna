@@ -1,7 +1,7 @@
 <?php
 $title = 'Beranda';
 $page = 'beranda';
-include_once ("navbar.php");
+include_once "navbar.php";
 $result = mysqli_query($conn, "SELECT * FROM tb_produk WHERE status = 'Tersedia' ORDER BY id_produk DESC LIMIT 3");
 ?>
 
@@ -27,7 +27,7 @@ $result = mysqli_query($conn, "SELECT * FROM tb_produk WHERE status = 'Tersedia'
                 </div>
             </div>
         </div>
-        <div class="row mt-5 mb-3">
+        <div class="row mt-5 mb-3" id="product-section">
             <div class="col-lg-12">
                 <div class="d-flex justify-content-center align-middle p-1 pb-0 background rounded-3 mb-3">
                     <h3 class="fw-semibold">Produk Terbaru</h3>
@@ -35,7 +35,7 @@ $result = mysqli_query($conn, "SELECT * FROM tb_produk WHERE status = 'Tersedia'
             </div>
             <?php while ($row = mysqli_fetch_assoc($result)) {
                 ?>
-                <div class="col-lg-4">
+                <div class="col-lg-4 flex mb-3">
                     <a href="detail-produk.php?id=<?= $row['id_produk']; ?>">
                         <div class="card shadow d-flex flex-column overflow-hidden">
                             <div
@@ -51,5 +51,5 @@ $result = mysqli_query($conn, "SELECT * FROM tb_produk WHERE status = 'Tersedia'
             <?php } ?>
         </div>
     </div>
-    <?php include_once ("footer.php") ?>
+    <?php include_once "footer.php" ?>
 </body>

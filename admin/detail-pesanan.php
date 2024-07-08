@@ -1,7 +1,7 @@
 <?php
 $title = 'Detail Pesanan';
 $page = 'pesanan';
-include_once ("sidebar.php");
+include_once "sidebar.php";
 
 $id = $_GET['id'];
 $result1 = mysqli_query($conn, "SELECT tb_pembelian.*, tb_pembelian.tanggal_pembelian as tanggal_pembelian, tb_pelanggan.* FROM tb_pembelian 
@@ -155,5 +155,5 @@ if (isset($_POST['button-submit'])) {
             </div>
         </div>
     </div>
-    <?php include_once ("footer.php") ?>
+    <?php include_once "footer.php" ?>
 </body>

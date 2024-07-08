@@ -1,7 +1,7 @@
 <?php
 $title = 'Ubah Data Produk';
 $page = 'produk';
-include_once ("sidebar.php");
+include_once "sidebar.php";
 
 $produk = mysqli_query($conn, "SELECT * FROM tb_produk WHERE id_produk = '" . $_GET['id'] . "' ");
 
@@ -218,5 +218,5 @@ if (isset($_POST['button-submit'])) {
         //     return value.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
         // }
     </script>
-    <?php include_once ("footer.php") ?>
+    <?php include_once "footer.php" ?>
 </body>

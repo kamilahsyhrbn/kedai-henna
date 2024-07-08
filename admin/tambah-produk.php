@@ -1,7 +1,7 @@
 <?php
 $title = 'Tambah Produk';
 $page = 'produk';
-include_once ("sidebar.php");
+include_once "sidebar.php";
 
 if (isset($_POST['button-submit'])) {
     $nama = ucwords($_POST['namaProduk']);
@@ -182,5 +182,5 @@ if (isset($_POST['button-submit'])) {
             }
         }
     </script>
-    <?php include_once ("footer.php") ?>
+    <?php include_once "footer.php" ?>
 </body>

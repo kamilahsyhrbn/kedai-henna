@@ -1,16 +1,17 @@
 <?php
 session_start();
-include 'backend/koneksi.php';
+include 'config/koneksi.php';
 
 // error_reporting(E_ALL);
 // ini_set('display_errors', 1);
 
 
-if ($_SESSION['status_login'] != true) {
-    $_SESSION['login-alert'] = '<div class="alert alert-danger" role="alert">Anda harus login terlebih dahulu!</div>';
+if ($_SESSION['status_login_admin'] != true) {
+    $_SESSION['login-alert'] = '<div class="alert alert-danger" role="alert">Anda harus masuk terlebih dahulu!</div>';
     echo "<script>window.location='masuk.php'</script>";
     exit();
 }
+
 ?>
 
 <!DOCTYPE html>
@@ -59,6 +60,20 @@ if ($_SESSION['status_login'] != true) {
                         <path d="m8 3.293 6 6V13.5a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 13.5V9.293z" />
                     </svg>
                     <span class="ms-2">Dashboard</span>
+                </a>
+            </li>
+
+            <li <?php if ($page === 'admin') { ?>
+                    class="position-relative w-100 rounded-2 p-2 fs-5 fw-semibold mb-2 active" <?php } else { ?>
+                    class="position-relative w-100 rounded-2 p-2 fs-5 mb-2" <?php } ?>>
+                <a href="data-admin.php"
+                    class="position-relative d-flex w-100 text-decoration-none align-items-center text-white">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                        class="bi bi-people-fill" viewBox="0 0 16 16">
+                        <path
+                            d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6m-5.784 6A2.24 2.24 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.3 6.3 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1zM4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5" />
+                    </svg>
+                    <span class="ms-2">Data Admin</span>
                 </a>
             </li>
 

@@ -1,7 +1,7 @@
 <?php
 $title = 'Akun Saya | Detail Akun';
 $page = 'detail-akun';
-include_once ("navbar.php");
+include_once "navbar.php";
 
 if (isset($_SESSION['id_pelanggan'])) {
     $id_pelanggan = $_SESSION['id_pelanggan'];
@@ -79,25 +79,25 @@ if (isset($_POST['button-submit'])) {
                             <div class="d-flex row">
                                 <div class="col-lg-6">
                                     <h5><b>Ubah Data Diri</b></h5>
-                                    <div class="input-container">
+                                    <div class="input-container mx-0">
                                         <input type="text" id="nama_pelanggan" name="nama_pelanggan" required
                                             autocomplete="name" value="<?php echo $data->nama_pelanggan ?>">
-                                        <label for=" nama_pelanggan" class="label"></label>
+                                        <label for=" nama_pelanggan" class="label">Nama</label>
                                         <div class="underline"></div>
                                     </div>
-                                    <div class="input-container">
+                                    <div class="input-container mx-0">
                                         <input type="text" id="telepon_pelanggan" name="telepon_pelanggan" required
                                             value="<?php echo $data->telepon_pelanggan ?>" autocomplete="phone">
                                         <label for="telepon_pelanggan" class="label">No. HP</label>
                                         <div class="underline"></div>
                                     </div>
-                                    <div class="input-container">
+                                    <div class="input-container mx-0">
                                         <input type="text" id="alamat_pelanggan" name="alamat_pelanggan" required
                                             value="<?php echo $data->alamat_pelanggan ?>">
                                         <label for="alamat_pelanggan" class="label">Alamat</label>
                                         <div class="underline"></div>
                                     </div>
-                                    <div class="input-container">
+                                    <div class="input-container mx-0">
                                         <input type="email" id="email_pelanggan" name="email_pelanggan" required
                                             value="<?php echo $data->email_pelanggan ?>" autocomplete="email">
                                         <label for="email_pelanggan" class="label">Email</label>
@@ -107,13 +107,14 @@ if (isset($_POST['button-submit'])) {
 
                                 <div class="col-lg-6">
                                     <h5><b>Ubah Password</b></h5>
-                                    <div class="input-container">
+                                    <div class="input-container mx-0">
                                         <input type="password" id="password_pelanggan" name="password_pelanggan">
-                                        <label for="password_pelanggan" class="label">Kata Sandi Baru (biarkan kosong
+                                        <label for="password_pelanggan" class="label w-full">Kata Sandi Baru (biarkan
+                                            kosong
                                             jika tidak ada perubahan)</label>
                                         <div class="underline"></div>
                                     </div>
-                                    <div class="input-container">
+                                    <div class="input-container mx-0">
                                         <input type="password" id="confirm-password" name="confirm-password">
                                         <label for="confirm-password" class="label">Konfirmasi Password Baru</label>
                                         <div class="underline"></div>
@@ -125,29 +126,10 @@ if (isset($_POST['button-submit'])) {
                                     PERUBAHAN</button>
                             </div>
                         </form>
-                        <!-- <div id="myModal" class="modal">
-                            <div class="modal-content">
-                                <span class="close" onclick="closeModal()">&times;</span>
-                                <p id="alertMessage"></p>
-                            </div>
-                        </div> -->
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <script>
-        function displayModal(message) {
-            var modal = document.getElementById('myModal');
-            var alertMessage = document.getElementById('alertMessage');
-            alertMessage.textContent = message;
-            modal.style.display = 'block';
-        }
-
-        function closeModal() {
-            var modal = document.getElementById('myModal');
-            modal.style.display = 'none';
-        }
-    </script>
-    <?php include_once ("footer.php") ?>
+    <?php include_once "footer.php" ?>
 </body>

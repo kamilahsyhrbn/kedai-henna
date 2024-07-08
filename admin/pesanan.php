@@ -1,7 +1,7 @@
 <?php
 $title = 'Pesanan';
 $page = 'pesanan';
-include_once ("sidebar.php");
+include_once "sidebar.php";
 
 $result = mysqli_query($conn, "SELECT tb_pelanggan.nama_pelanggan, tb_pembelian.* FROM tb_pembelian JOIN tb_pelanggan ON tb_pelanggan.id_pelanggan = tb_pembelian.id_pelanggan WHERE status_pembelian IS NOT NULL ORDER BY tanggal_pembelian DESC");
 
@@ -75,5 +75,5 @@ $result = mysqli_query($conn, "SELECT tb_pelanggan.nama_pelanggan, tb_pembelian.
             </div>
         </div>
     </div>
-    <?php include_once ("footer.php") ?>
+    <?php include_once "footer.php" ?>
 </body>
