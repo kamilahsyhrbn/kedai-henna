@@ -259,14 +259,14 @@ td.action svg:hover,
   .navigation {
     width: 100%;
     left: -100%;
-    z-index: 1000;
+    z-index: 998;
   }
   .navigation.active {
     width: 100%;
     left: 0;
   }
   .toggle {
-    z-index: 10001;
+    z-index: 999;
   }
   .main.active .toggle {
     color: var(--white);

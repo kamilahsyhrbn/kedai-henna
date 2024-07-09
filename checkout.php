@@ -96,7 +96,7 @@ if (isset($_POST['checkout'])) {
                 <div class="row">
                     <?php if ($result1->num_rows > 0) { ?>
                         <div class="table-responsive">
-                            <table class="table table-border-bottom align-middle">
+                            <table class="table table-border-bottom align-middle text-nowrap">
                                 <thead class="fw-bold">
                                     <tr>
                                         <td>Nama Produk</td>

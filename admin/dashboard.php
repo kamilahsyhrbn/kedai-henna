@@ -85,7 +85,7 @@ $data_pelanggan = mysqli_fetch_assoc($jumlah_pelanggan);
                 </div>
                 <div class="table-responsive mt-4">
                     <?php if (mysqli_num_rows($pembelian) > 0) { ?>
-                        <table class="table table-borderless table-hover align-middle">
+                        <table class="table table-borderless table-hover align-middle text-nowrap">
                             <thead>
                                 <tr class="fw-semibold">
                                     <td>Nama Pelanggan</td>
@@ -134,7 +134,7 @@ $data_pelanggan = mysqli_fetch_assoc($jumlah_pelanggan);
                 </div>
                 <div class="table-responsive mt-4">
                     <?php if (mysqli_num_rows($pembelian) > 0) { ?>
-                        <table class="table table-borderless table-hover align-middle">
+                        <table class="table table-borderless table-hover align-middle text-nowrap">
                             <?php while ($row = mysqli_fetch_assoc($pelanggan)) { ?>
                                 <tr>
                                     <td width="60px" class="py-3 px-1">

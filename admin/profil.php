@@ -6,8 +6,8 @@ include_once "sidebar.php";
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
-if (isset($_SESSION['id'])) {
-    $id_admin = $_SESSION['id'];
+if (isset($_SESSION['id_admin'])) {
+    $id_admin = $_SESSION['id_admin'];
     $admin = mysqli_query($conn, "SELECT * FROM tb_admin WHERE id_admin = '$id_admin'");
     $a = mysqli_fetch_object($admin);
 }

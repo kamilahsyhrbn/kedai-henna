@@ -26,9 +26,9 @@ $result = mysqli_query($conn, "SELECT * FROM tb_produk");
             </div>
             <div class="shadows position-relative d-grid p-3 rounded-4 bg-body">
                 <div class="table-responsive mt-4">
-                    <table class="table table-borderless table-hover align-middle">
+                    <table class="table table-borderless table-hover align-middle text-nowrap">
                         <thead>
-                            <tr class="fw-semibold ">
+                            <tr class="fw-semibold">
                                 <td>Nama Produk</td>
                                 <td>Harga</td>
                                 <td>Status</td>

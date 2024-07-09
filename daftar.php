@@ -18,22 +18,33 @@ if (isset($_POST['button-submit'])) {
     $alamat_pelanggan = $_POST['alamat_pelanggan'];
     $email_pelanggan = $_POST['email_pelanggan'];
     $password_pelanggan = md5($_POST['password_pelanggan']);
+    $confirmPassword = md5($_POST['confirm-password']);
     $currentTimestamp = time();
     $tanggal_bergabung = date('Y-m-d H:i:s', $currentTimestamp);
 
-    // Query untuk mengecek apakah email sudah ada di tabel users
-    $query = "SELECT * FROM tb_pelanggan WHERE email_pelanggan = '$email_pelanggan'";
-    $result = mysqli_query($conn, $query);
 
-    // Jika hasil query lebih dari 0, maka email sudah ada di database
-    if (mysqli_num_rows($result) > 0) {
+    // Cek apakah konfirmasi password sama dengan password
+    if ($password_pelanggan != $confirmPassword) {
         echo '<div class="container"><div class="alert alert-danger alert-dismissible fade show" role="alert">
+        Password yang Anda masukkan tidak cocok. Silahkan coba lagi!
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div></div>';
+    } else {
+
+
+        // Query untuk mengecek apakah email sudah ada di tabel users
+        $query = "SELECT * FROM tb_pelanggan WHERE email_pelanggan = '$email_pelanggan'";
+        $result = mysqli_query($conn, $query);
+
+        // Jika hasil query lebih dari 0, maka email sudah ada di database
+        if (mysqli_num_rows($result) > 0) {
+            echo '<div class="container"><div class="alert alert-danger alert-dismissible fade show" role="alert">
         Email yang Anda masukkan sudah terdaftar!
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
       </div></div>';
-        // echo "<script>window.location='daftar.php'</script>";
-    } else {
-        $insert = mysqli_query($conn, "INSERT INTO tb_pelanggan VALUES (
+            // echo "<script>window.location='daftar.php'</script>";
+        } else {
+            $insert = mysqli_query($conn, "INSERT INTO tb_pelanggan VALUES (
                                 null,
                                 '" . $nama_pelanggan . "',
                                 '" . $telepon_pelanggan . "',
@@ -43,14 +54,15 @@ if (isset($_POST['button-submit'])) {
                                 '" . $tanggal_bergabung . "'
                                 )");
 
-        if ($insert) {
-            $_SESSION['alert'] = '<div class="alert alert-success alert-dismissible fade show" role="alert">
+            if ($insert) {
+                $_SESSION['alert'] = '<div class="alert alert-success alert-dismissible fade show" role="alert">
             Berhasil membuat akun!
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
           </div>';
-            echo "<script>window.location='masuk.php'</script>";
-        } else {
-            echo "<script>displayModal('Registration Failed: " . mysqli_error($conn) . "');</script>";
+                echo "<script>window.location='masuk.php'</script>";
+            } else {
+                echo "<script>displayModal('Registration Failed: " . mysqli_error($conn) . "');</script>";
+            }
         }
     }
 }
@@ -64,7 +76,7 @@ if (isset($_POST['button-submit'])) {
                 <p>Silakan masukkan email, password dan data diri Anda untuk membuat akun. </p>
             </div>
             <div>
-                <form method="POST" onsubmit="return register();">
+                <form method="POST">
                     <div class="input-margin">
                         <div class="input-container">
                             <input type="text" id="nama_pelanggan" name="nama_pelanggan" required>
@@ -108,46 +120,7 @@ if (isset($_POST['button-submit'])) {
                     </div>
                 </form>
             </div>
-            <div id="myModal" class="modal">
-                <div class="modal-content">
-                    <span class="close" onclick="closeModal()">&times;</span>
-                    <p id="alertMessage"></p>
-                </div>
-            </div>
         </div>
     </div>
     <?php include_once "footer.php" ?>
-    <script>
-        function register() {
-            var nama_pelanggan = document.getElementById('nama_pelanggan').value;
-            var telepon = document.getElementById('telepon_pelanggan').value;
-            var alamat_pelanggan = document.getElementById('alamat_pelanggan').value;
-            var email_pelanggan = document.getElementById('email_pelanggan').value;
-            var password_pelanggan = document.getElementById('password_pelanggan').value;
-            var confirmPassword = document.getElementById('confirm-password').value;
-
-            if (!nama_pelanggan || !telepon || !alamat_pelanggan || !email_pelanggan || !password_pelanggan || !confirmPassword) {
-                displayModal('Harap isi semua atribut!');
-                return false;
-            }
-
-            if (password_pelanggan !== confirmPassword) {
-                displayModal('Password yang Anda masukkan tidak sama!');
-                return false;
-            }
-            return displayModal;
-        }
-
-        function displayModal(message) {
-            var modal = document.getElementById('myModal');
-            var alertMessage = document.getElementById('alertMessage');
-            alertMessage.textContent = message;
-            modal.style.display = 'block';
-        }
-
-        function closeModal() {
-            var modal = document.getElementById('myModal');
-            modal.style.display = 'none';
-        }
-    </script>
 </body>

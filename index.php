@@ -35,7 +35,7 @@ $result = mysqli_query($conn, "SELECT * FROM tb_produk WHERE status = 'Tersedia'
             </div>
             <?php while ($row = mysqli_fetch_assoc($result)) {
                 ?>
-                <div class="col-lg-4 flex mb-3">
+                <div class="col-lg-4 mb-3">
                     <a href="detail-produk.php?id=<?= $row['id_produk']; ?>">
                         <div class="card shadow d-flex flex-column overflow-hidden">
                             <div

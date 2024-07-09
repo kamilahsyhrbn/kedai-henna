@@ -37,8 +37,8 @@ if (isset($_POST['button-submit'])) {
             </div>
             <form id="reportForm" method="POST">
                 <div class="shadows position-relative p-3 rounded-4 bg-body mb-3">
-                    <div class="d-flex align-items-center justify-content-between">
-                        <div>
+                    <div class="d-flex align-items-center justify-content-between row">
+                        <div class="col-lg-4">
                             <p class="mb-1">Tanggal Mulai : </p>
                             <input id="datepicker1" width="276" name="tanggal_mulai"
                                 value="<?= $tanggal_mulai_formatted ?>" required />
@@ -49,7 +49,7 @@ if (isset($_POST['button-submit'])) {
                             </script>
                         </div>
 
-                        <div>
+                        <div class="col-lg-4">
                             <p class="mb-1">Tanggal Akhir : </p>
                             <input id="datepicker2" width="276" name="tanggal_akhir"
                                 value="<?= $tanggal_akhir_formatted ?>" required />
@@ -60,8 +60,8 @@ if (isset($_POST['button-submit'])) {
                                 });
                             </script>
                         </div>
-                        <div>
-                            <select name="status" id="" class="border w-100 py-1 px-3 rounded-3" required>
+                        <div class="col-lg-4">
+                            <select name="status" id="" class="border w-100 py-1 px-2 rounded-3" required>
                                 <option value="Semua">Semua</option>
                                 <option value="Menunggu Konfirmasi">Menunggu Konfirmasi</option>
                                 <option value="Diproses">Diproses</option>
@@ -71,7 +71,7 @@ if (isset($_POST['button-submit'])) {
                             </select>
                         </div>
                     </div>
-                    <div class="d-flex align-items-center justify-content-center">
+                    <div class="d-flex align-items-center justify-content-center mt-3">
                         <div>
                             <a href="" class="text-decoration-none me-5">
                                 <button class="button py-2 px-4 text-white fw-semibold rounded border-0"
@@ -103,7 +103,7 @@ if (isset($_POST['button-submit'])) {
                         <h4 class="fw-semibold text-center">Laporan transaksi dari <?php echo $tanggal_mulai_formatted ?>
                             sampai <?php echo $tanggal_akhir_formatted ?></h4>
                         <div class="table-responsive mt-4">
-                            <table class="table table-borderless table-hover align-middle">
+                            <table class="table table-borderless table-hover align-middle text-nowrap">
                                 <thead>
                                     <tr class="fw-semibold ">
                                         <td>No</td>

@@ -109,9 +109,11 @@ if (isset($_POST['button-submit'])) {
                                     <h5><b>Ubah Password</b></h5>
                                     <div class="input-container mx-0">
                                         <input type="password" id="password_pelanggan" name="password_pelanggan">
-                                        <label for="password_pelanggan" class="label w-full">Kata Sandi Baru (biarkan
-                                            kosong
-                                            jika tidak ada perubahan)</label>
+                                        <label for="password_pelanggan" class="label w-full">
+                                            Kata Sandi Baru
+                                            <p class="d-none d-md-inline"> (biarkan kosong jika tidak ada
+                                                perubahan)</p>
+                                        </label>
                                         <div class="underline"></div>
                                     </div>
                                     <div class="input-container mx-0">

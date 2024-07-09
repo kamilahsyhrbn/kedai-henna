@@ -26,7 +26,7 @@ $admin = mysqli_query($conn, "SELECT * FROM tb_admin");
             </div>
             <div class="shadows position-relative d-grid p-3 rounded-4 bg-body">
                 <div class="table-responsive mt-4">
-                    <table class="table table-borderless table-hover align-middle">
+                    <table class="table table-borderless table-hover align-middle text-nowrap">
                         <thead>
                             <tr class="fw-semibold">
                                 <td>No</td>

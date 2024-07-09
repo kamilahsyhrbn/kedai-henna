@@ -23,7 +23,7 @@ $pelanggan = mysqli_query($conn, "SELECT * FROM tb_pelanggan");
             <div class="shadows position-relative d-grid p-3 rounded-4 bg-body">
                 <div class="table-responsive mt-4">
                     <?php if (mysqli_num_rows($pelanggan) > 0) { ?>
-                        <table class="table table-borderless table-hover align-middle">
+                        <table class="table table-borderless table-hover align-middle text-nowrap">
                             <thead>
                                 <tr class="fw-semibold">
                                     <td>No</td>

@@ -49,7 +49,7 @@ if (isset($_POST['button-submit'])) {
                 </div>
                 <div class="shadows position-relative mt-3 d-grid p-3 rounded-4 bg-body">
                     <div class="table-responsive mt-4">
-                        <table class="table table-borderless table-hover align-middle">
+                        <table class="table table-borderless table-hover align-middle text-nowrap">
                             <thead>
                                 <tr class="fw-semibold ">
                                     <td>Nama Produk</td>
@@ -87,7 +87,8 @@ if (isset($_POST['button-submit'])) {
                         <div class="row">
                             <div class="col-lg-8">
                                 <div class="table-responsive mt-4">
-                                    <table class="table table-borderless table-hover align-middle">
+                                    <table
+                                        class="table table-borderless table-hover align-middle text-nowrap text-center">
                                         <tbody>
                                             <tr>
                                                 <td width="30px">Tanggal</td>

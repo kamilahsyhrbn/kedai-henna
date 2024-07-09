@@ -25,7 +25,7 @@ $result = mysqli_query($conn, "SELECT tb_pelanggan.nama_pelanggan, tb_pembelian.
             <div class="shadows position-relative d-grid p-3 rounded-4 bg-body">
                 <?php if (mysqli_num_rows($result) > 0) { ?>
                     <div class="table-responsive mt-4">
-                        <table class="table table-borderless table-hover align-middle">
+                        <table class="table table-borderless table-hover align-middle text-nowrap">
                             <thead>
                                 <tr class="fw-semibold">
                                     <td>No</td>

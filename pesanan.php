@@ -29,7 +29,7 @@ $result1 = mysqli_query($conn, "SELECT * FROM tb_pembelian WHERE id_pelanggan = 
                 <div class="container-fluid mt-4">
                     <?php if ($result1->num_rows > 0) { ?>
                         <div class="table-responsive">
-                            <table class="table table-border-bottom table-hover align-middle">
+                            <table class="table table-border-bottom table-hover align-middle text-nowrap">
                                 <thead>
                                     <tr class="fw-bold">
                                         <td scope="col">No</td>

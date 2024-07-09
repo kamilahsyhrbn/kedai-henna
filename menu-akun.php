@@ -8,8 +8,8 @@ if (!isUserLoggedIn()) {
 }
 ?>
 
-<nav class="content-navbar border-bottom">
-    <ul class="nav">
+<nav class="content-navbar border-bottom overflow-auto">
+    <ul class="nav flex-nowrap text-nowrap">
         <li class="nav-item">
             <a <?php if ($page === 'akun') { ?> class="nav-link active" <?php } else { ?> class="nav-link text-reset" <?php } ?>
                 href="akun-saya.php">Dashboard</a>
