@@ -106,7 +106,7 @@ if (isset($_POST['button-submit'])) {
                     <p class="text-secondary">*Masukkan username dengan benar karena username tidak dapat diubah setelah
                         dibuat</p>
                     <div class="d-flex justify-content-center">
-                        <button type="button" class="button-submit w-50 my-3 py-2 fw-bold rounded-3"
+                        <button type="button" class="button-submit col-sm-12 col-md-6 my-3 py-2 px-3 fw-bold rounded-3"
                             data-bs-toggle="modal" data-bs-target="#exampleModal">TAMBAH ADMIN</button>
                     </div>
                     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"

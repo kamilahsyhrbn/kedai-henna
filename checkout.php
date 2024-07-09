@@ -170,7 +170,7 @@ if (isset($_POST['checkout'])) {
                                     </div>
                                     <div class="d-grid gap-2 col-6 mx-auto">
                                         <input type="hidden" name="id_pembelian" value="<?= $order['id_pembelian'] ?>">
-                                        <button type="submit" class="btn keranjang text-white py-2 fw-bold"
+                                        <button type="submit" class="btn keranjang text-white py-2 fw-bold "
                                             name="checkout">CHECKOUT</button>
                                     </div>
                                 </form>

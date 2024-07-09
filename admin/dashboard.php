@@ -134,14 +134,17 @@ $data_pelanggan = mysqli_fetch_assoc($jumlah_pelanggan);
                 </div>
                 <div class="table-responsive mt-4">
                     <?php if (mysqli_num_rows($pembelian) > 0) { ?>
-                        <table class="table table-borderless table-hover align-middle text-nowrap">
+                        <table class="table table-borderless table-hover text-nowrap">
                             <?php while ($row = mysqli_fetch_assoc($pelanggan)) { ?>
                                 <tr>
-                                    <td width="60px" class="py-3 px-1">
-                                        <div class="imgBox position-relative rounded-full overflow-hidden">
-                                            <img src="images/default_pfp.png"
-                                                class="position-absolute top-0 left-0 w-100 h-100 object-cover">
-                                        </div>
+                                    <td width="20" class="py-3 px-1">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
+                                            class="bi bi-person-circle" viewBox="0 0 16 16">
+                                            <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0" />
+                                            <path fill-rule="evenodd"
+                                                d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1" />
+                                        </svg>
+
                                     </td>
                                     <td class="d-flex align-items-center">
                                         <p class="fw-semibold fs-6">

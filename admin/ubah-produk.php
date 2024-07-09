@@ -165,8 +165,8 @@ if (isset($_POST['button-submit'])) {
                             </div>
                         </div>
                         <div class="d-flex justify-content-center">
-                            <button class="button-submit w-50 my-3 py-2 fw-bold rounded-3" type="submit"
-                                name="button-submit">UBAH DATA
+                            <button class="button-submit col-sm-12 col-md-6 my-3 py-2 px-3 fw-bold rounded-3"
+                                type="submit" name="button-submit">UBAH DATA
                                 PRODUK</button>
                         </div>
                     </form>

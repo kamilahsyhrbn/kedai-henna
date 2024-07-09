@@ -11,17 +11,15 @@ if (!isUserLoggedIn()) {
 <nav class="content-navbar border-bottom overflow-auto">
     <ul class="nav flex-nowrap text-nowrap">
         <li class="nav-item">
-            <a <?php if ($page === 'akun') { ?> class="nav-link active" <?php } else { ?> class="nav-link text-reset" <?php } ?>
-                href="akun-saya.php">Dashboard</a>
+            <a <?php if ($page === 'detail-akun') { ?> class="nav-link active" <?php } else { ?>
+                    class="nav-link text-reset" <?php } ?> href="detail-akun.php">Detail Akun</a>
         </li>
         <li class="nav-item">
-            <a <?php if ($page === 'pesanan') { ?> class="nav-link active" <?php } else { ?> class="nav-link text-reset" <?php } ?> href="pesanan.php">Pesanan Saya</a>
+            <a <?php if ($page === 'pesanan') { ?> class="nav-link active" <?php } else { ?> class="nav-link text-reset"
+                <?php } ?> href="pesanan.php">Pesanan Saya</a>
         </li>
         <li class="nav-item">
-            <a <?php if ($page === 'detail-akun') { ?> class="nav-link active" <?php } else { ?> class="nav-link text-reset" <?php } ?> href="detail-akun.php">Detail Akun</a>
-        </li>
-        <li class="nav-item">
-            <a  class="nav-link text-reset" href="keluar.php">Keluar</a>
+            <a class="nav-link text-reset" href="keluar.php">Keluar</a>
         </li>
     </ul>
 </nav>

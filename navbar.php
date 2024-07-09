@@ -95,9 +95,9 @@ if (isUserLoggedIn()) {
                             <div class="dropdown">
                                 <li class="nav-icon d-flex align-items-center" data-bs-toggle="dropdown"
                                     aria-expanded="false">
-                                    <a class="nav-link" href="akun-saya.php">
+                                    <a class="nav-link">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
-                                            <?php if ($page === 'akun' || $page === 'pesanan' || $page === 'detail-akun') { ?>
+                                            <?php if ($page === 'pesanan' || $page === 'detail-akun') { ?>
                                                 class="bi bi-person-circle active" <?php } else { ?> class="bi bi-person-circle"
                                             <?php } ?> viewBox="0 0 16 16">
                                             <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0" />
@@ -108,7 +108,7 @@ if (isUserLoggedIn()) {
                                 <ul class="dropdown-menu text-small shadow">
                                     <li>
                                         <a class="dropdown-item d-flex w-100 text-decoration-none align-items-center"
-                                            href="akun-saya.php">
+                                            href="detail-akun.php">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
                                                 fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
                                                 <path
