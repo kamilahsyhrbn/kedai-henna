@@ -65,7 +65,8 @@ if (isset($_POST['deleteAllCart'])) {
                                         <div class="d-flex gap-2 w-100 justify-content-between">
                                             <div>
                                                 <h6 class="mb-0"><?= $row['nama_produk'] ?></h6>
-                                                <small class="mb-0 opacity-75 price">Rp <?= $row['harga_produk'] ?></small>
+                                                <small class="mb-0 opacity-75 price">Rp
+                                                    <?= number_format($row['harga_produk'], 0, ',', '.') ?></small>
                                                 <p class="mb-0 opacity-75">Jumlah : <?= $row['total_jumlah'] ?></p>
                                             </div>
                                             <div>
@@ -111,7 +112,8 @@ if (isset($_POST['deleteAllCart'])) {
                         <div class="mt-3 d-flex justify-content-between">
                             <p class="fw-bold">TOTAL</p>
                             <?php if ($result1->num_rows > 0) { ?>
-                                <p id="total_price" class="fw-bold">Rp <?= $order['total_harga'] ?> </p>
+                                <p id="total_price" class="fw-bold">Rp
+                                    <?= number_format($order['total_harga'], 0, ',', '.') ?> </p>
                             <?php } else { ?>
                                 <p id="total_price" class="fw-bold">Rp 0</p>
                             <?php } ?>

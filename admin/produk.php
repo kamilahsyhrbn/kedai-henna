@@ -43,7 +43,7 @@ $result = mysqli_query($conn, "SELECT * FROM tb_produk");
                             <?php while ($row = mysqli_fetch_assoc($result)) { ?>
                                 <tr>
                                     <td> <?php echo $row['nama_produk'] ?></td>
-                                    <td>Rp <?php echo $row['harga_produk'] ?></td>
+                                    <td>Rp <?php echo number_format($row['harga_produk'], 0, ',', '.') ?></td>
                                     <td> <?php echo $row['status'] ?></td>
                                     <td> <?php echo $row['stok'] ?></td>
                                     <td class="description"> <?php echo $row['deskripsi_produk'] ?></td>

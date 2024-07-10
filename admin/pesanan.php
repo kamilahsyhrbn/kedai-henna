@@ -52,7 +52,7 @@ $result = mysqli_query($conn, "SELECT tb_pelanggan.nama_pelanggan, tb_pembelian.
                                             <?php echo date("d-m-Y", strtotime($row['tanggal_pembelian'])) ?>
                                         </td>
                                         <td>
-                                            Rp <?= $row['total_harga'] ?>
+                                            Rp <?= number_format($row['total_harga'], 0, ',', '.') ?>
                                         </td>
                                         <td>
                                             <?= $row['status_pembelian'] ?>

@@ -207,16 +207,6 @@ if (isset($_POST['button-submit'])) {
                 uploadText.style.display = 'flex';
             }
         }
-
-        // function formatCurrency(input) {
-        //     const value = input.value.replace(/[^\d]/g, '');
-        //     const formattedValue = 'Rp ' + addThousandSeparator(value);
-        //     input.value = formattedValue;
-        // }
-
-        // function addThousandSeparator(value) {
-        //     return value.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
-        // }
     </script>
     <?php include_once "footer.php" ?>
 </body>

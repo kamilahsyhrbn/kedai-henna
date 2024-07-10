@@ -36,10 +36,32 @@ if ($result1->num_rows > 0) {
     echo '<script>window.location="keranjang.php"</script>';
 }
 
+function generateResiNumber($length = 10)
+{
+    $characters = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    $charactersLength = strlen($characters);
+    $resiNumber = '';
+    for ($i = 0; $i < $length; $i++) {
+        $resiNumber .= $characters[rand(0, $charactersLength - 1)];
+    }
+    return $resiNumber;
+}
+
 if (isset($_POST['checkout'])) {
     $targetDir = "admin/images/";
     $file = $_FILES['bukti_tf'];
     $id_pembelian = $_POST['id_pembelian'];
+    $bayar = $_POST['bayar'];
+    $alamat = $_POST['alamat'];
+    $provinsi = $_POST['nama_provinsi'];
+    $distrik = $_POST['nama_distrik'];
+    $type = $_POST['type_distrik'];
+    $pos = $_POST['kode_pos'];
+    $ekspedisi = $_POST['ekspedisi'];
+    $paket = $_POST['paket'];
+    $ongkir = $_POST['ongkir'];
+    $estimasi = $_POST['estimasi'];
+    $resi = generateResiNumber();
     $fileType = strtolower(pathinfo($_FILES['bukti_tf']['name'], PATHINFO_EXTENSION));
     $fileName = uniqid() . '.' . $fileType;
     $targetFile = $targetDir . $fileName;
@@ -55,7 +77,9 @@ if (isset($_POST['checkout'])) {
               </div></div>";
     } else {
         if (move_uploaded_file($file["tmp_name"], $targetFile)) {
-            mysqli_query($conn, "UPDATE tb_pembelian SET status_pembelian = 'Menunggu Konfirmasi', bukti_transfer = '" . $fileName . "' WHERE id_pembelian = '" . $id_pembelian . "' ");
+            mysqli_query($conn, "UPDATE tb_pembelian SET total_bayar = '" . $bayar . "', alamat ='" . $alamat . "', provinsi = '" . $provinsi . "', distrik ='" . $distrik . "', type = '" . $type . "', 
+            kode_pos = '" . $pos . "', ekspedisi = '" . $ekspedisi . "', paket = '" . $paket . "', ongkir = '" . $ongkir . "', estimasi = '" . $estimasi . "',
+            resi = '" . $resi . "', status_pembelian = 'Menunggu Konfirmasi', bukti_transfer = '" . $fileName . "' WHERE id_pembelian = '" . $id_pembelian . "' ");
             $result4 = mysqli_query($conn, "SELECT * FROM tb_detail_pembelian WHERE id_pembelian = '" . $id_pembelian . "' ");
 
             while ($row = $result4->fetch_assoc()) {
@@ -116,16 +140,24 @@ if (isset($_POST['checkout'])) {
                                                 <p><?= $row['total_jumlah'] ?></p>
                                             </td>
                                             <td>
-                                                <p>Rp <?= $row['harga_produk'] ?></p>
+                                                <p>Rp <?= number_format($row['harga_produk'], 0, ',', '.') ?></p>
                                             </td>
                                             <td>
-                                                <p>Rp <?= $row['total_harga'] ?></p>
+                                                <p>Rp <?= number_format($row['total_harga'], 0, ',', '.') ?></p>
                                             </td>
                                         </tr>
                                     <?php } ?>
                                 </tbody>
                             </table>
-                            <p class="fw-bolder text-end">TOTAL : Rp <?= $order['total_harga'] ?></p>
+                            <p class="fw-bolder text-end">TOTAL HARGA PRODUK: Rp
+                                <?= number_format($order['total_harga'], 0, ',', '.') ?>
+                            </p>
+                            <p class="fw-bolder text-end" id="ongkir">ONGKOS KIRIM: Rp
+
+                            </p>
+                            <p class="fw-bolder text-end" id="total">TOTAL : Rp
+                            </p>
+                            <input type="hidden" id="total-harga" value="<?= $order['total_harga'] ?>">
                         </div>
                         <div>
                             <div class="container">
@@ -146,13 +178,48 @@ if (isset($_POST['checkout'])) {
                                         <label for="alamat"
                                             class="font-weight-bold text-sm text-gray-600 mb-1">Alamat</label>
                                         <textarea class="form-control" id="alamat"
-                                            disabled><?php echo $a->alamat_pelanggan ?></textarea>
+                                            name="alamat"><?php echo $a->alamat_pelanggan ?></textarea>
                                     </div>
 
                                     <div class="form-group my-3">
-                                        <label for="login"
+                                        <label for="provinsi"
+                                            class="font-weight-bold text-sm text-gray-600 mb-1">Provinsi</label>
+                                        <select class="form-control" id="provinsi" name="provinsi">
+
+                                        </select>
+                                    </div>
+
+                                    <div class="form-group my-3">
+                                        <label for="distrik"
+                                            class="font-weight-bold text-sm text-gray-600 mb-1">Distrik</label>
+                                        <select class="form-control" id="distrik" name="distrik" required>
+
+                                        </select>
+                                    </div>
+
+
+                                    <div class="form-group my-3">
+                                        <label for="courier"
+                                            class="font-weight-bold text-sm text-gray-600 mb-1">Ekspedisi</label>
+                                        <select class="form-control" id="courier" name="ekspedisi" required>
+                                            <option value="">Pilih Ekspedisi</option>
+                                            <option value="jne">JNE</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="form-group my-3">
+                                        <label for="paket" class="font-weight-bold text-sm text-gray-600 mb-1">Jasa
+                                            Pengiriman</label>
+                                        <select class="form-control" id="paket" name="paket" required>
+
+                                        </select>
+                                    </div>
+
+                                    <div class="form-group my-3">
+                                        <label for="pembayaran"
                                             class="font-weight-bold text-sm text-gray-600 mb-1">Pembayaran</label>
-                                        <select class="form-control" id="login">
+                                        <select class="form-control" id="pembayaran">
+                                            <option value="">Pilih Metode Pembayaran</option>
                                             <option value="bca">BANK BCA - XXXXXXXXXXXXXXXX - John</option>
                                             <option value="mandiri">BANK MANDIRI - XXXXXXXXXXXXXX - Jane</option>
                                         </select>
@@ -168,8 +235,18 @@ if (isset($_POST['checkout'])) {
                                                 class="text-decoration-none" style="color: var(--accent)">Akun Saya</a>
                                         </p>
                                     </div>
+
+
                                     <div class="d-grid gap-2 col-6 mx-auto">
                                         <input type="hidden" name="id_pembelian" value="<?= $order['id_pembelian'] ?>">
+                                        <input type="hidden" class="form-control" name="nama_provinsi">
+                                        <input type="hidden" class="form-control" name="nama_distrik">
+                                        <input type="hidden" class="form-control" name="type_distrik">
+                                        <input type="hidden" class="form-control" name="kode_pos">
+                                        <input type="hidden" class="form-control" name="paket">
+                                        <input type="hidden" class="form-control" name="ongkir">
+                                        <input type="hidden" class="form-control" name="estimasi">
+                                        <input type="hidden" class="form-control" name="bayar">
                                         <button type="submit" class="btn keranjang text-white py-2 fw-bold "
                                             name="checkout">CHECKOUT</button>
                                     </div>

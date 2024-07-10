@@ -71,7 +71,7 @@ $data_pelanggan = mysqli_fetch_assoc($jumlah_pelanggan);
             <div class="position-relative d-grid p-3 rounded-4 bg-body shadows">
                 <div class="d-flex justify-content-between align-items-start">
                     <h5 class="fw-bold">Total Pemasukan</h5>
-                    <h4 class="fw-bold accent"><?= $total_pemasukan ?></h4>
+                    <h4 class="fw-bold accent"><?= number_format($total_pemasukan, 0, ',', '.') ?></h4>
                 </div>
             </div>
         </div>
@@ -107,7 +107,7 @@ $data_pelanggan = mysqli_fetch_assoc($jumlah_pelanggan);
                                             <?php echo date("d-m-Y", strtotime($row['tanggal_pembelian'])) ?>
                                         </td>
                                         <td>
-                                            Rp <?php echo $row['total_harga'] ?>
+                                            Rp <?php echo number_format($row['total_harga'], 0, ',', '.') ?>
                                         </td>
                                         <td>
                                             <?php echo $row['status_pembelian'] ?>

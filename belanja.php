@@ -23,7 +23,7 @@ $result = mysqli_query($conn, "SELECT * FROM tb_produk");
                                     class="object-fit-cover top-0 left-0">
                             </div>
                             <h5 class="fw-semibold overflow-hidden mb-0"><?php echo $row['nama_produk'] ?></h5>
-                            <p class="my-1 accent">Rp <?php echo $row['harga_produk'] ?></p>
+                            <p class="my-1 accent">Rp <?php echo number_format($row['harga_produk'], 0, ',', '.') ?></p>
                             <p class="overflow-hidden desc"><?php echo $row['deskripsi_produk'] ?></p>
                         </div>
                     </a>

@@ -85,7 +85,7 @@ if (isset($_POST['btnCart'])) {
             <?php if (isUserLoggedIn()): ?>
                 <div class="col-lg-7">
                     <h2 class="fw-semibold mt-5"><?php echo $p->nama_produk; ?></h2>
-                    <span class="accent">Rp <?php echo $p->harga_produk; ?></span>
+                    <span class="accent">Rp <?php echo number_format($p->harga_produk, 0, ',', '.'); ?></span>
                     <p class="mt-3"><?php echo $p->deskripsi_produk; ?></p>
                     <div class="d-flex align-items-center my-5">
                         <?php if ($p->stok == 0) { ?>
@@ -114,7 +114,7 @@ if (isset($_POST['btnCart'])) {
             <?php else: ?>
                 <div class="col-lg-7">
                     <h2 class="fw-semibold mt-5"><?php echo $p->nama_produk; ?></h2>
-                    <span class="accent">Rp <?php echo $p->harga_produk; ?></span>
+                    <span class="accent">Rp <?php echo number_format($p->harga_produk, 0, ',', '.'); ?></span>
                     <p class="mt-3"><?php echo $p->deskripsi_produk; ?></p>
                     <div class="my-5">
                         <a href="masuk.php">
@@ -152,18 +152,5 @@ if (isset($_POST['btnCart'])) {
                     alert("Angka tidak bisa dibawah 1!");
                 }
             }
-
-            // function addToCart() {
-            //     var isLoggedIn = <?php echo isUserLoggedIn() ? 'true' : 'false'; ?>;
-
-            //     if (isLoggedIn) {
-            //         <div class="alert alert-warning alert-dismissible fade show" role="alert">
-            //             <strong>Holy guacamole!</strong> You should check in on some of those fields below.
-            //             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            //         </div>
-            //     } else {
-            //         window.location.href = 'masuk.php';
-            //     }
-            // }
         </script>
 </body>

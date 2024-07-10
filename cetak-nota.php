@@ -28,7 +28,6 @@ $result2 = mysqli_query($conn, "SELECT tb_produk.*, tb_detail_pembelian.* FROM t
                                     JOIN tb_produk ON tb_produk.id_produk = tb_detail_pembelian.id_produk 
                                     WHERE tb_detail_pembelian.id_pembelian = '" . $id_pembelian . "'");
 
-$total_belanja = 0;
 
 ?>
 
@@ -77,7 +76,7 @@ $total_belanja = 0;
                 <h3>Penerima</h3>
                 <div class="row">
                     <span class="fw-bold fs-5"><?= $row1['nama_pelanggan'] ?></span>
-                    <span><?= $row1['alamat_pelanggan'] ?></span>
+                    <span><?= $row1['alamat'], ", ", $row1['type'], " ", $row1['distrik'], ", ", $row1['provinsi'], " ", $row1['kode_pos'] ?></span>
                     <span><?= $row1['telepon_pelanggan'] ?></span>
                 </div>
             </div>
@@ -86,6 +85,25 @@ $total_belanja = 0;
                 <div class="row">
                     <span class="fw-bold fs-5">Kedai Henna</span>
                     <span>081234567890 </span>
+                </div>
+            </div>
+        </div>
+
+        <div class="border-bottom py-4">
+            <h4>Informasi Pengiriman</h4>
+
+            <div class="row">
+                <div class="col-4">
+                    <span class="fw-bold">Ekspedisi</span>
+                    <span class="text-uppercase"><?= $row1['ekspedisi'] ?></span>
+                </div>
+                <div class="col-4">
+                    <span class="fw-bold">Pengiriman</span>
+                    <span><?= $row1['paket'] ?></span>
+                </div>
+                <div class="col-4">
+                    <span class="fw-bold">No. Resi</span>
+                    <span><?= $row1['resi'] ?></span>
                 </div>
             </div>
         </div>
@@ -113,20 +131,27 @@ $total_belanja = 0;
                                 <p><?= $row2['total_jumlah'] ?></p>
                             </td>
                             <td>
-                                <p>Rp <?= $row2['harga_produk'] ?></p>
+                                <p>Rp <?= number_format($row2['harga_produk'], 0, ',', '.') ?></p>
                             </td>
                             <td>
-                                <p>Rp <?= $row2['total_harga'] ?></p>
+                                <p>Rp <?= number_format($row2['total_harga'], 0, ',', '.') ?></p>
                             </td>
                         </tr>
                         <?php
-                        $total_belanja += $row2['total_harga'];
                     } ?>
 
 
                 </tbody>
             </table>
-            <p class="fw-bolder text-end">TOTAL : Rp <?= $total_belanja ?></p>
+            <p class="fw-bolder text-end">TOTAL HARGA PRODUK : Rp
+                <?= number_format($row1['total_harga'], 0, ',', '.') ?>
+            </p>
+            <p class="fw-bolder text-end">ONGKOS KIRIM : Rp
+                <?= number_format($row1['ongkir'], 0, ',', '.') ?>
+            </p>
+            <p class="fw-bolder text-end">TOTAL : Rp
+                <?= number_format($row1['total_bayar'], 0, ',', '.') ?>
+            </p>
         </div>
 
         <!-- Bootstrap JS -->
@@ -139,7 +164,7 @@ $total_belanja = 0;
 
         <?php
         $fileName =
-            'Nota-' . $row1['id_pembelian'] . " " . $row1['nama_pelanggan'] . '.pdf';
+            'Nota -' . " " . $row1['nama_pelanggan'] . '.pdf';
         ?>
 
         <!-- Download PDF -->

@@ -2,11 +2,11 @@
 session_start();
 include 'config/koneksi.php';
 
-// error_reporting(E_ALL);
-// ini_set('display_errors', 1);
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 
 
-if ($_SESSION['status_login'] != true) {
+if ($_SESSION['status_login_admin'] != true) {
     $_SESSION['login-alert'] = '<div class="alert alert-danger" role="alert">Anda harus login terlebih dahulu!</div>';
     echo "<script>window.location='masuk.php'</script>";
     exit();
@@ -88,7 +88,7 @@ $total_pemasukan = 0;
                             <td><?= $i ?></td>
                             <td><?= $data['tanggal_pembelian'] ?></td>
                             <td><?= $data['nama_pelanggan'] ?></td>
-                            <td>Rp <?= $data['total_harga'] ?></td>
+                            <td>Rp <?= number_format($data['total_harga'], 0, ',', '.') ?></td>
                             <td><?= $data['status_pembelian'] ?></td>
                         </tr>
                         <?php
@@ -96,7 +96,7 @@ $total_pemasukan = 0;
                     } ?>
                     <tr class="fw-semibold">
                         <td colspan="3">TOTAL</td>
-                        <td colspan="2">Rp <?= $total_pemasukan ?></td>
+                        <td colspan="2">Rp <?= number_format($total_pemasukan, 0, ',', '.') ?></td>
                     </tr>
                 </tbody>
             </table>

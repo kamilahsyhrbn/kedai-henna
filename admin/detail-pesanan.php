@@ -49,7 +49,7 @@ if (isset($_POST['button-submit'])) {
                 </div>
                 <div class="shadows position-relative mt-3 d-grid p-3 rounded-4 bg-body">
                     <div class="table-responsive mt-4">
-                        <table class="table table-borderless table-hover align-middle text-nowrap">
+                        <table class="table table-borderless table-hover align-middle text-nowrap border-bottom">
                             <thead>
                                 <tr class="fw-semibold ">
                                     <td>Nama Produk</td>
@@ -69,17 +69,21 @@ if (isset($_POST['button-submit'])) {
                                             <p><?= $row2['total_jumlah'] ?></p>
                                         </td>
                                         <td>
-                                            <p>Rp <?= $row2['harga_produk'] ?></p>
+                                            <p>Rp <?= number_format($row2['harga_produk'], 0, ',', '.') ?></p>
                                         </td>
                                         <td>
-                                            <p>Rp <?= $row2['total_harga'] ?></p>
+                                            <p>Rp <?= number_format($row2['total_harga'], 0, ',', '.') ?></p>
                                         </td>
                                     </tr>
                                 <?php } ?>
                             </tbody>
                         </table>
-                        <hr>
-                        <p class="fw-bolder text-end">TOTAL : Rp <?= $row1['total_harga'] ?></p>
+
+                        <p class="fw-bolder text-end">TOTAL HARGA PRODUK : Rp
+                            <?= number_format($row1['total_harga'], 0, ',', '.') ?>
+                        <p class="fw-bolder text-end">ONGKIR : Rp <?= number_format($row1['ongkir'], 0, ',', '.') ?>
+                        <p class="fw-bolder text-end">TOTAL : Rp <?= number_format($row1['total_bayar'], 0, ',', '.') ?>
+                        </p>
                     </div>
                 </div>
                 <div class="shadows mt-3 position-relative d-grid p-3 rounded-4 bg-body">
@@ -93,7 +97,7 @@ if (isset($_POST['button-submit'])) {
                                                 <td width="30px">Tanggal</td>
                                                 <td width="25px">:</td>
                                                 <td>
-                                                    <?= date("d-m-Y", strtotime($row1['tanggal_pembelian'])) ?>
+                                                    <?= date("d/m/Y", strtotime($row1['tanggal_pembelian'])) ?>
                                                 </td>
                                             </tr>
                                             <tr>
@@ -109,7 +113,22 @@ if (isset($_POST['button-submit'])) {
                                             <tr>
                                                 <td>Alamat</td>
                                                 <td>:</td>
-                                                <td><?= $row1['alamat_pelanggan'] ?></td>
+                                                <td><?= $row1['alamat'], ", ", $row1['type'], " ", $row1['distrik'], ", ", $row1['provinsi'], " ", $row1['kode_pos'] ?>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Pengiriman</td>
+                                                <td>:</td>
+                                                <td class="text-uppercase">
+                                                    <?= $row1['ekspedisi'], " ", $row1['paket'] ?>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>No. Resi</td>
+                                                <td>:</td>
+                                                <td>
+                                                    <?= $row1['resi'] ?>
+                                                </td>
                                             </tr>
                                             <tr>
                                                 <td>Status</td>

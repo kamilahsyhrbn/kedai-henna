@@ -121,7 +121,7 @@ if (isset($_POST['button-submit'])) {
                                             <td><?= $i ?></td>
                                             <td><?= $data['tanggal_pembelian'] ?></td>
                                             <td><?= $data['nama_pelanggan'] ?></td>
-                                            <td>Rp <?= $data['total_harga'] ?></td>
+                                            <td>Rp <?= number_format($data['total_harga'], 0, ',', '.') ?></td>
                                             <td><?= $data['status_pembelian'] ?></td>
                                         </tr>
                                         <?php
@@ -129,7 +129,7 @@ if (isset($_POST['button-submit'])) {
                                     } ?>
                                     <tr class="fw-semibold">
                                         <td colspan="3">TOTAL</td>
-                                        <td colspan="2">Rp <?php echo $total_pemasukan ?></td>
+                                        <td colspan="2">Rp <?php echo number_format($total_pemasukan, 0, ',', '.') ?></td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -146,13 +146,7 @@ if (isset($_POST['button-submit'])) {
         </div>
     </div>
 
-    <!-- <script>
-        function submitForm() {
-            var form = document.getElementById("reportForm");
-            form.action = "cetak-laporan.php"; // Set action form
-            form.submit(); // Submit form
-        }
-    </script> -->
+
     <script>
         function submitForm() {
             var form = document.getElementById("reportForm");
@@ -162,5 +156,6 @@ if (isset($_POST['button-submit'])) {
             window.open('cetak-laporan.php?' + params, '_blank');
         }
     </script>
+
     <?php include_once "footer.php" ?>
 </body>
