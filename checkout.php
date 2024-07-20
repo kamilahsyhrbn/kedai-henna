@@ -36,17 +36,6 @@ if ($result1->num_rows > 0) {
     echo '<script>window.location="keranjang.php"</script>';
 }
 
-function generateResiNumber($length = 10)
-{
-    $characters = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-    $charactersLength = strlen($characters);
-    $resiNumber = '';
-    for ($i = 0; $i < $length; $i++) {
-        $resiNumber .= $characters[rand(0, $charactersLength - 1)];
-    }
-    return $resiNumber;
-}
-
 if (isset($_POST['checkout'])) {
     $targetDir = "admin/images/";
     $file = $_FILES['bukti_tf'];
@@ -61,7 +50,6 @@ if (isset($_POST['checkout'])) {
     $paket = $_POST['paket'];
     $ongkir = $_POST['ongkir'];
     $estimasi = $_POST['estimasi'];
-    $resi = generateResiNumber();
     $fileType = strtolower(pathinfo($_FILES['bukti_tf']['name'], PATHINFO_EXTENSION));
     $fileName = uniqid() . '.' . $fileType;
     $targetFile = $targetDir . $fileName;
@@ -79,7 +67,7 @@ if (isset($_POST['checkout'])) {
         if (move_uploaded_file($file["tmp_name"], $targetFile)) {
             mysqli_query($conn, "UPDATE tb_pembelian SET total_bayar = '" . $bayar . "', alamat ='" . $alamat . "', provinsi = '" . $provinsi . "', distrik ='" . $distrik . "', type = '" . $type . "', 
             kode_pos = '" . $pos . "', ekspedisi = '" . $ekspedisi . "', paket = '" . $paket . "', ongkir = '" . $ongkir . "', estimasi = '" . $estimasi . "',
-            resi = '" . $resi . "', status_pembelian = 'Menunggu Konfirmasi', bukti_transfer = '" . $fileName . "' WHERE id_pembelian = '" . $id_pembelian . "' ");
+            status_pembelian = 'Menunggu Konfirmasi', bukti_transfer = '" . $fileName . "' WHERE id_pembelian = '" . $id_pembelian . "' ");
             $result4 = mysqli_query($conn, "SELECT * FROM tb_detail_pembelian WHERE id_pembelian = '" . $id_pembelian . "' ");
 
             while ($row = $result4->fetch_assoc()) {
@@ -208,8 +196,8 @@ if (isset($_POST['checkout'])) {
                                     </div>
 
                                     <div class="form-group my-3">
-                                        <label for="paket" class="font-weight-bold text-sm text-gray-600 mb-1">Jasa
-                                            Pengiriman</label>
+                                        <label for="paket"
+                                            class="font-weight-bold text-sm text-gray-600 mb-1">Layanan</label>
                                         <select class="form-control" id="paket" name="paket" required>
 
                                         </select>

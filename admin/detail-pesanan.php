@@ -15,12 +15,23 @@ $result2 = mysqli_query($conn, "SELECT tb_produk.*, tb_detail_pembelian.* FROM t
 
 if (isset($_POST['button-submit'])) {
     $status = $_POST['status'];
-    mysqli_query($conn, "UPDATE tb_pembelian SET status_pembelian = '" . $status . "' WHERE id_pembelian = $id");
-    $_SESSION['status-alert'] = '<div class="alert alert-success alert-dismissible fade show" role="alert">
-    Berhasil mengubah status pengiriman!
+    $resi = $_POST['resi'];
+
+    if (!empty($resi)) {
+        mysqli_query($conn, "UPDATE tb_pembelian SET resi = '" . $resi . "', status_pembelian = '" . $status . "' WHERE id_pembelian = $id");
+        $_SESSION['status-alert'] = '<div class="alert alert-success alert-dismissible fade show" role="alert">
+    Berhasil memasukkan resi dan mengubah status pengiriman!
     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
   </div>';
-    echo '<script>window.location="pesanan.php"</script>';
+        echo '<script>window.location="pesanan.php"</script>';
+    } else {
+        mysqli_query($conn, "UPDATE tb_pembelian SET status_pembelian = '" . $status . "' WHERE id_pembelian = $id");
+        $_SESSION['status-alert'] = '<div class="alert alert-success alert-dismissible fade show" role="alert">
+        Berhasil mengubah status pengiriman!
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>';
+        echo '<script>window.location="pesanan.php"</script>';
+    }
 }
 
 ?>
@@ -117,7 +128,7 @@ if (isset($_POST['button-submit'])) {
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <td>Pengiriman</td>
+                                                <td>Layanan</td>
                                                 <td>:</td>
                                                 <td class="text-uppercase">
                                                     <?= $row1['ekspedisi'], " ", $row1['paket'] ?>
@@ -127,7 +138,9 @@ if (isset($_POST['button-submit'])) {
                                                 <td>No. Resi</td>
                                                 <td>:</td>
                                                 <td>
-                                                    <?= $row1['resi'] ?>
+                                                    <input type="text" class="border-0 w-100" name="resi" id="resi"
+                                                        value=<?= $row1['resi'] ?
+                                                            $row1['resi'] : "" ?>>
                                                 </td>
                                             </tr>
                                             <tr>
@@ -166,8 +179,7 @@ if (isset($_POST['button-submit'])) {
                         </div>
                         <div class="d-flex justify-content-center">
                             <button class="button-submit col-sm-12 col-md-6 my-3 py-2 px-3 fw-bold rounded-3"
-                                type="submit" name="button-submit">UBAH STATUS
-                                PENGIRIMAN</button>
+                                type="submit" name="button-submit">SIMPAN PERUBAHAN</button>
                         </div>
                     </form>
                 </div>

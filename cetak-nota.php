@@ -103,7 +103,7 @@ $result2 = mysqli_query($conn, "SELECT tb_produk.*, tb_detail_pembelian.* FROM t
                 </div>
                 <div class="col-4">
                     <span class="fw-bold">No. Resi</span>
-                    <span><?= $row1['resi'] ?></span>
+                    <span><?= $row1['resi'] ? $row1['resi'] : "Pesanan Anda belum dikirim" ?></span>
                 </div>
             </div>
         </div>

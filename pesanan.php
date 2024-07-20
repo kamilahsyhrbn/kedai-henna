@@ -50,9 +50,14 @@ $result1 = mysqli_query($conn, "SELECT * FROM tb_pembelian WHERE id_pelanggan = 
                                             <td scope="row"><?= $i ?></td>
                                             <td><?= date("d-m-Y", strtotime($row['tanggal_pembelian'])) ?></td>
                                             <td><?= $row['status_pembelian'] ?></td>
-                                            <td>Rp <?= number_format($row['total_harga'], 0, ',', '.') ?></td>
-                                            <td><button class="border-0 nota px-2 py-1 text-white rounded-2 download-btn"
-                                                    data-id="<?= $idPembelian ?>">Cetak Nota</button></td>
+                                            <td>Rp <?= number_format($row['total_bayar'], 0, ',', '.') ?></td>
+                                            <td><a href="detail-pesanan.php?id=<?= $idPembelian ?>">
+                                                    <button class="border-0 nota px-2 py-1 text-white rounded-2">Detail</button>
+                                                </a>
+                                                •
+                                                <button class="border-0 nota px-2 py-1 text-white rounded-2 download-btn"
+                                                    data-id="<?= $idPembelian ?>">Cetak Nota</button>
+                                            </td>
                                         </tr>
                                     <?php } ?>
                                 </tbody>
